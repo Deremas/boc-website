@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/common/Button.astro";
+import CTA from "../components/common/CTA.astro";
+import { company } from "../data/company";
+import { chekelaFeatures, chekelaStats } from "../data/services";
+---
+
+<BaseLayout
+  title="Chekela — Online Learning Platform by Blue Ocean Creatives"
+  description="Chekela: 87,890 learners, 43 courses, an AI tutor in five Ethiopian languages, and apps on Google Play and the App Store. Recommended by the Addis Ababa City Education Bureau."
+>
+  <div class="container hero">
+    <div>
+      <p class="eyebrow">Chekela</p>
+      <h1>Learning built for Ethiopian students.</h1>
+      <p class="lede">
+        Chekela brings teacher-prepared lessons, exams and professional courses to any phone — with an AI tutor that speaks your language.
+      </p>
+      <div class="btn-row" style="margin-top: 28px;">
+        <Button href={company.chekelaUrl} track="chekela" external>Visit chkela.com</Button>
+        <Button href={company.chekelaUrl} variant="secondary" track="chekela" external>Get the app</Button>
+      </div>
+    </div>
+    <div class="product-frame">
+      <p class="eyebrow">On the phone</p>
+      <h2 style="color:white;">Grade 9–12, revision, and professional courses.</h2>
+      <p style="margin-top:12px; color:rgba(255,255,255,.8);">
+        AI tutor in English, Amharic, Afaan Oromoo, Tigrigna and Somali. App screenshots will be added when the capture set is ready.
+      </p>
+    </div>
+  </div>
+  <section class="proof-bar">
+    <div class="container proof-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+      {chekelaStats.map((item) => (
+        <div>
+          <strong>{item.value}</strong>
+          <span>{item.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <h2>What students use.</h2>
+      <div class="feature-grid" style="margin-top: 20px;">
+        {chekelaFeatures.map((feature) => <article class="card"><h3>{feature}</h3></article>)}
+      </div>
+      <div class="card" style="margin-top: 18px;">
+        <h3>Recognition</h3>
+        <p>Recommended by the Addis Ababa City Government Education Bureau to secondary schools. Recognised by the iceaddis Venture Meda accelerator.</p>
+      </div>
+      <div class="card" style="margin-top: 18px;">
+        <h3>Digital marketing course</h3>
+        <p>Our social media course — first taught in person at Nisir Training Center — is now on Chekela, including paid ad management taught by our General Manager.</p>
+      </div>
+    </div>
+  </section>
+  <CTA
+    title="Start on Chekela."
+    text="Lessons, exams and an AI tutor in five Ethiopian languages."
+    primaryLabel="Visit chkela.com"
+    primaryHref={company.chekelaUrl}
+    primaryTrack="chekela"
+    secondaryLabel="Talk to Blue Ocean"
+    secondaryHref="/contact"
+    secondaryTrack="proposal"
+  />
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    .proof-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>

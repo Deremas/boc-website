@@ -1,0 +1,42 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  title?: string;
+  text?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  primaryTrack?: string;
+  secondaryTrack?: string;
+}
+
+const {
+  title = "Let’s grow your business.",
+  text = "Tell us what you need — we reply within one working day.",
+  primaryLabel = "Get a proposal",
+  primaryHref = "/contact",
+  secondaryLabel = "Chat on Telegram",
+  secondaryHref = "https://t.me/Blue_Ocean_Creatives",
+  primaryTrack = "proposal",
+  secondaryTrack = "telegram",
+} = Astro.props;
+---
+
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-panel">
+      <div>
+        <h2>{title}</h2>
+        <p>{text}</p>
+      </div>
+      <div class="btn-row">
+        <Button href={primaryHref} variant="light" track={primaryTrack}>{primaryLabel}</Button>
+        <Button href={secondaryHref} variant="ghost-light" track={secondaryTrack} external={secondaryHref.startsWith("http")}>
+          {secondaryLabel}
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>

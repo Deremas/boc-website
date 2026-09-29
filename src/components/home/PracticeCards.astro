@@ -1,0 +1,39 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import ServiceCard from "../common/ServiceCard.astro";
+---
+
+<section>
+  <div class="container">
+    <SectionHeading title="Two practices. One partner." />
+    <div class="practice-grid">
+      <ServiceCard
+        eyebrow="Digital Marketing"
+        title="Grow a brand people choose."
+        text="Strategy, content, video, hosts and paid ads across TikTok, Facebook, Instagram, YouTube, LinkedIn and Telegram."
+        points={[
+          "Social media management",
+          "Content and video production",
+          "Paid ads and conversion tracking",
+          "Amharic, Afaan Oromoo, Somali and Tigrigna",
+        ]}
+        href="/digital-marketing"
+        label="Explore marketing"
+      />
+      <ServiceCard
+        eyebrow="Business Systems"
+        title="Run a tighter operation."
+        text="Blue Ocean ERP — 329 features across 21 modules — plus Odoo, stock systems and custom software."
+        points={[
+          "Blue Ocean ERP for manufacturers",
+          "Stock and financial management",
+          "Odoo implementation",
+          "Web, mobile and custom systems",
+        ]}
+        href="/business-systems"
+        label="Explore systems"
+        dark
+      />
+    </div>
+  </div>
+</section>

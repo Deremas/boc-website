@@ -1,17 +1,25 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HomeHero from "../components/home/HomeHero.astro";
+import ProofBar from "../components/home/ProofBar.astro";
+import PracticeCards from "../components/home/PracticeCards.astro";
+import ResultsSection from "../components/home/ResultsSection.astro";
+import WhyBlueOcean from "../components/home/WhyBlueOcean.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import ChekelaStrip from "../components/home/ChekelaStrip.astro";
+import CTA from "../components/common/CTA.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Blue Ocean Creatives | Digital Marketing & ERP Systems in Ethiopia"
+  description="We manage 50+ social media accounts for Ethiopian brands and build the ERP and business systems 100+ companies run on. Teams in Addis Ababa, Dire Dawa and Adama."
+>
+  <HomeHero />
+  <ProofBar />
+  <PracticeCards />
+  <ResultsSection />
+  <WhyBlueOcean />
+  <Testimonials />
+  <ChekelaStrip />
+  <CTA />
+</BaseLayout>

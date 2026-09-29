@@ -1,0 +1,26 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import TestimonialCarousel from "./TestimonialCarousel";
+import { getCollection } from "astro:content";
+
+const order = ["apex", "wow-energy", "peniel", "evolve", "konel", "nova-water", "vector", "builders", "ag-grace"];
+const quotes = (await getCollection("testimonials"))
+  .sort((a, b) => {
+    const rank = (id: string) => {
+      const place = order.indexOf(id);
+      return place === -1 ? order.length : place;
+    };
+    return rank(a.id) - rank(b.id);
+  })
+  .map((entry) => entry.data);
+---
+
+<section class="section-tint">
+  <div class="container">
+    <SectionHeading
+      eyebrow="From signed reference letters"
+      title="What clients put in writing."
+    />
+    <TestimonialCarousel client:visible items={quotes} />
+  </div>
+</section>

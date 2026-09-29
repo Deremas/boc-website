@@ -1,0 +1,20 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import { why } from "../../data/company";
+---
+
+<section>
+  <div class="container">
+    <SectionHeading title="Why Blue Ocean" />
+    <div class="why-grid">
+      {
+        why.map((item) => (
+          <article class="card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/common/Icon.astro";
+import ContactForm from "../components/forms/ContactForm";
+import { company } from "../data/company";
+import { socials } from "../data/socials";
+
+function iconName(name: string) {
+  if (name.startsWith("Facebook")) return "facebook" as const;
+  if (name.startsWith("Instagram")) return "instagram" as const;
+  if (name.startsWith("TikTok")) return "tiktok" as const;
+  if (name.startsWith("LinkedIn")) return "linkedin" as const;
+  return "telegram" as const;
+}
+
+const interest = Astro.url.searchParams.get("interest") ?? "";
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const map = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&z=15&output=embed`;
+---
+
+<BaseLayout
+  title="Contact Blue Ocean Creatives | Addis Ababa, Ethiopia"
+  description="Get a marketing proposal or book a live ERP demo. Call +251 911 061 348, email contact@blueoceancreatives.com or visit us at the BT Building, Haya Hulet, Addis Ababa."
+>
+  <section>
+    <div class="container contact-layout">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Let’s talk.</h1>
+        <p class="lede">Tell us what you need. We reply within one working day.</p>
+        <div class="card" style="margin-top: 24px;">
+          <ContactForm client:load siteKey={siteKey} initialInterest={interest} />
+        </div>
+      </div>
+      <aside>
+        <div class="card">
+          <h2>Reach us</h2>
+          <div class="icon-list" style="margin-top: 14px;">
+            <p class="icon-line">
+              <Icon name="phone" />
+              <span class="inline-links">
+                <a href={`tel:${company.phoneTel}`} data-track="phone">{company.phone}</a>
+                <a href={`tel:${company.phoneAltTel}`} data-track="phone">{company.phoneAlt}</a>
+              </span>
+            </p>
+            <p class="icon-line">
+              <Icon name="mail" />
+              <span class="inline-links">
+                <a href={`mailto:${company.email}`}>{company.email}</a>
+                <a href={`mailto:${company.emailCoo}`}>{company.emailCoo}</a>
+              </span>
+            </p>
+            <p class="icon-line">
+              <Icon name="pin" />
+              <span>{company.address}. Regional teams in Dire Dawa and Adama.</span>
+            </p>
+          </div>
+          <div class="social-row">
+            {socials.map((social) => (
+              <a class={`social-${iconName(social.name)}`} href={social.url} aria-label={social.name} title={social.name} target="_blank" rel="noopener noreferrer" data-track={social.name === "Telegram" ? "telegram" : undefined}>
+                <Icon name={iconName(social.name)} />
+              </a>
+            ))}
+          </div>
+        </div>
+        <iframe class="map-frame" style="margin-top: 16px;" title="Blue Ocean Creatives office map" src={map} loading="lazy"></iframe>
+      </aside>
+    </div>
+  </section>
+  {siteKey && <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
+</BaseLayout>

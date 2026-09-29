@@ -1,0 +1,33 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import LogoWall from "../common/LogoWall.astro";
+import { showcase } from "../../data/services";
+import { getCollection } from "astro:content";
+
+const clients = (await getCollection("clients"))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order);
+---
+
+<section>
+  <div class="container">
+    <SectionHeading
+      eyebrow="Creative"
+      title="Work from the studio and from the field."
+      text="Real client and studio creative."
+    />
+    <div class="work-grid">
+      {
+        showcase.map((item) => (
+          <a class="card work-card" href={item.href} data-track="case-study">
+            <img src={item.image} alt={item.title} loading="lazy" />
+            <div>
+              <h3>{item.title}</h3>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+    <LogoWall clients={clients} />
+  </div>
+</section>

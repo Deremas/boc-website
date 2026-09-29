@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/common/Button.astro";
+---
+
+<BaseLayout
+  title="Page not found | Blue Ocean Creatives"
+  description="This page may have moved. Go back to the Blue Ocean Creatives homepage or contact the team."
+>
+  <section>
+    <div class="container" style="max-width: 640px;">
+      <p class="eyebrow">404</p>
+      <h1>Page not found.</h1>
+      <p class="lede">The page may have moved.</p>
+      <div class="btn-row" style="margin-top: 24px;">
+        <Button href="/">Go to homepage</Button>
+        <Button href="/contact" variant="secondary">Contact us</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

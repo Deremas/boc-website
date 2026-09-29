@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import WorkFilter from "../../components/work/WorkFilter";
+import WorkCard from "../../components/work/WorkCard.astro";
+import LogoWall from "../../components/common/LogoWall.astro";
+import CTA from "../../components/common/CTA.astro";
+import { getCollection } from "astro:content";
+
+const caseOrder = ["lavish-medical-spa", "peniel", "apex", "konel", "nova-water", "wow-energy"];
+const studies = (await getCollection("caseStudies")).sort(
+  (a, b) => caseOrder.indexOf(a.id) - caseOrder.indexOf(b.id),
+);
+const clients = (await getCollection("clients"))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order);
+---
+
+<BaseLayout
+  title="Our Work — Case Studies | Blue Ocean Creatives"
+  description="Social media campaigns and ERP projects for Ethiopian brands and manufacturers — with verified results and signed client references."
+>
+  <section>
+    <div class="container">
+      <p class="eyebrow">Our work</p>
+      <h1>Work that runs, and work that shows.</h1>
+      <WorkFilter client:load />
+      <div class="work-grid">
+        {
+          studies.map((study) => (
+            <WorkCard
+              href={`/work/${study.id}`}
+              title={study.data.title}
+              sector={study.data.sector}
+              category={study.data.category}
+              headlineResult={study.data.headlineResult}
+              image={study.data.heroImage}
+            />
+          ))
+        }
+      </div>
+      <LogoWall clients={clients} />
+    </div>
+  </section>
+  <CTA />
+</BaseLayout>

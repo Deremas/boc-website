@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SystemsHero from "../components/systems/SystemsHero.astro";
+import PainPoints from "../components/systems/PainPoints.astro";
+import ERPStats from "../components/systems/ERPStats.astro";
+import ModuleTabs from "../components/systems/ERPModules";
+import SystemsCards from "../components/systems/SystemsCards.astro";
+import ImplementationSteps from "../components/systems/ImplementationSteps.astro";
+import FAQ from "../components/systems/FAQ.astro";
+import CTA from "../components/common/CTA.astro";
+import SectionHeading from "../components/common/SectionHeading.astro";
+import TestimonialCard from "../components/common/TestimonialCard.astro";
+import { erpDifferences, erpModules, systemProjects } from "../data/services";
+import { getCollection } from "astro:content";
+
+const quotes = (await getCollection("testimonials")).filter((entry) =>
+  entry.data.pages.includes("systems"),
+);
+---
+
+<BaseLayout
+  title="Blue Ocean ERP & Business Systems for Ethiopian Companies | Blue Ocean Creatives"
+  description="Blue Ocean ERP — 329 features, 21 modules — plus Odoo implementation, stock management and custom software. Built in Ethiopia, supported on site. Book a live demo."
+>
+  <SystemsHero />
+  <PainPoints />
+  <ERPStats />
+  <section>
+    <div class="container">
+      <SectionHeading title="What the platform covers." />
+      <ModuleTabs client:visible groups={erpModules.map((group) => ({ ...group, items: [...group.items] }))} />
+    </div>
+  </section>
+  <section class="section-tint">
+    <div class="container">
+      <SectionHeading title="What makes it different." />
+      <ul class="service-grid" style="list-style:none; padding:0; margin:0;">
+        {erpDifferences.map((item) => <li class="card"><p>{item}</p></li>)}
+      </ul>
+    </div>
+  </section>
+  <SystemsCards />
+  <section>
+    <div class="container">
+      <SectionHeading title="Projects backed by reference letters." />
+      <div class="card" style="overflow:auto;">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>System delivered</th>
+              <th>Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              systemProjects.map((project) => (
+                <tr>
+                  <td data-label="Client">
+                    {project.href ? <a href={project.href}>{project.client}</a> : project.client}
+                  </td>
+                  <td data-label="System">{project.system}</td>
+                  <td data-label="Reference">{project.reference}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <ImplementationSteps />
+  <section>
+    <div class="container">
+      <SectionHeading title="What the letters say." />
+      <div class="result-grid">
+        {quotes.map((entry) => <TestimonialCard {...entry.data} />)}
+      </div>
+    </div>
+  </section>
+  <FAQ />
+  <CTA
+    title="See it running on real operations."
+    text="Tell us about the plant, the branches or the process. We reply within one working day."
+    primaryLabel="Book a live demo"
+    primaryHref="/contact?interest=Blue%20Ocean%20ERP%20demo"
+    primaryTrack="erp-demo"
+    secondaryLabel="Talk to us"
+    secondaryHref="/contact"
+    secondaryTrack="proposal"
+  />
+</BaseLayout>

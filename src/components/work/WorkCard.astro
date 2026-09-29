@@ -1,0 +1,29 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  sector: string;
+  category: string;
+  headlineResult: string;
+  image?: string;
+}
+
+const { href, title, sector, category, headlineResult, image } = Astro.props;
+---
+
+<a class="card work-card" href={href} data-work-card data-category={category} data-track="case-study">
+  {
+    image ? (
+      <img src={image} alt={title} loading="lazy" />
+    ) : (
+      <div class="product-frame" style="border-radius:0;">
+        <strong style="font-size:2rem;">{headlineResult}</strong>
+      </div>
+    )
+  }
+  <div>
+    <p class="eyebrow">{sector}</p>
+    <h3>{title}</h3>
+    <strong>{headlineResult}</strong>
+  </div>
+</a>

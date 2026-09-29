@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MarketingHero from "../components/marketing/MarketingHero.astro";
+import MarketingServices from "../components/marketing/MarketingServices.astro";
+import MarketingProcess from "../components/marketing/MarketingProcess.astro";
+import ResultsTable from "../components/marketing/ResultsTable.astro";
+import CreativeShowcase from "../components/marketing/CreativeShowcase.astro";
+import CTA from "../components/common/CTA.astro";
+import TestimonialCard from "../components/common/TestimonialCard.astro";
+import SectionHeading from "../components/common/SectionHeading.astro";
+import { getCollection } from "astro:content";
+import { languageExamples, healthClients } from "../data/services";
+import { languages } from "../data/company";
+
+const quotes = (await getCollection("testimonials")).filter((entry) =>
+  entry.data.pages.includes("marketing"),
+);
+---
+
+<BaseLayout
+  title="Social Media & Digital Marketing Agency in Ethiopia | Blue Ocean Creatives"
+  description="50+ social media accounts managed. Content, video, hosts and paid ads in Amharic, Afaan Oromoo, Somali and Tigrigna. Proven results for health, education and consumer brands."
+>
+  <MarketingHero />
+  <section class="proof-bar" aria-label="Marketing numbers">
+    <div class="container proof-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+      <div><strong data-count="50+">50+</strong><span>Social media accounts</span></div>
+      <div><strong data-count="37M+">37M+</strong><span>Views across four flagship accounts in 12 months</span></div>
+      <div><strong data-count="5">5</strong><span>Content languages</span></div>
+      <div><strong data-count="96K+">96K+</strong><span>Followers on our own TikTok and Instagram</span></div>
+    </div>
+  </section>
+  <MarketingServices />
+  <MarketingProcess />
+  <ResultsTable />
+  <section class="section-tint">
+    <div class="container split">
+      <div>
+        <SectionHeading
+          title="Speaking every audience’s language."
+          text="Resident teams in Dire Dawa and Adama produce work in the language people actually use."
+        />
+        <div class="chips">
+          {languages.map((language) => <span class="chip">{language}</span>)}
+        </div>
+      </div>
+      <ul class="service-grid" style="list-style:none; padding:0; margin:0;">
+        {
+          languageExamples.map((example) => (
+            <li class="card">
+              <h3>{example.client}</h3>
+              <p>{example.languages}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <SectionHeading
+        eyebrow="Health"
+        title="Health communication is checked before it goes live."
+        text="Health communication must be accurate, culturally appropriate and approved before it goes live."
+      />
+      <div class="logo-wall">
+        {
+          healthClients.map((client) => (
+            <div class="logo-tile">
+              {client.logo ? <img src={client.logo} alt={`${client.name} logo`} loading="lazy" /> : <span>{client.name}</span>}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <CreativeShowcase />
+  <section class="section-tint">
+    <div class="container">
+      <SectionHeading title="From the reference letters." />
+      <div class="result-grid">
+        {quotes.map((entry) => <TestimonialCard {...entry.data} />)}
+      </div>
+    </div>
+  </section>
+  <CTA
+    title="Tell us about your brand."
+    text="We’ll send a proposal within two working days."
+    primaryLabel="Get a marketing proposal"
+    primaryHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    .proof-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+</style>

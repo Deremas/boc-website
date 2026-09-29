@@ -1,0 +1,21 @@
+---
+interface Props {
+  clients: { name: string; logo?: string }[];
+}
+
+const { clients } = Astro.props;
+---
+
+<div class="logo-wall">
+  {
+    clients.map((client) => (
+      <div class="logo-tile">
+        {client.logo ? (
+          <img src={client.logo} alt={`${client.name} logo`} loading="lazy" />
+        ) : (
+          <span>{client.name}</span>
+        )}
+      </div>
+    ))
+  }
+</div>

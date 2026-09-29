@@ -1,0 +1,16 @@
+---
+import { proof } from "../../data/company";
+---
+
+<section class="proof-bar" aria-label="Company proof">
+  <div class="container proof-grid">
+    {
+      proof.map((item) => (
+        <div>
+          <strong data-count={item.value}>{item.value}</strong>
+          <span>{item.label}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>

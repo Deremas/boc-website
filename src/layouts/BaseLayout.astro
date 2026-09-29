@@ -1,0 +1,86 @@
+---
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import SEO from "../components/layout/SEO.astro";
+import Analytics from "../components/layout/Analytics.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO title={title} description={description} image={image} />
+    <Analytics />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Blue Ocean Creatives",
+      url: "https://blueoceancreatives.com",
+    })} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function parts(raw: string) {
+        const plus = raw.endsWith("+");
+        const unit = /m/i.test(raw) ? "M" : /k/i.test(raw) ? "K" : "";
+        const target = Number(raw.replace(/[^0-9]/g, ""));
+        const suffix = unit + (plus ? "+" : "");
+        return { target, suffix, grouped: raw.includes(",") };
+      }
+
+      function label(value: number, grouped: boolean, suffix: string) {
+        const rounded = Math.round(value);
+        const body = grouped ? rounded.toLocaleString("en-US") : String(rounded);
+        return body + suffix;
+      }
+
+      document.querySelectorAll<HTMLElement>("[data-count]").forEach((node) => {
+        const raw = node.dataset.count ?? "";
+        const { target, suffix, grouped } = parts(raw);
+        if (!target || reduce) return;
+        node.textContent = label(0, grouped, suffix);
+
+        const run = () => {
+          const start = performance.now();
+          const duration = 1400;
+          const frame = (now: number) => {
+            const progress = Math.min(1, (now - start) / duration);
+            const eased = 1 - (1 - progress) ** 3;
+            node.textContent = label(target * eased, grouped, suffix);
+            if (progress < 1) requestAnimationFrame(frame);
+          };
+          requestAnimationFrame(frame);
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            run();
+          },
+          { threshold: 0.5 },
+        );
+        observer.observe(node);
+      });
+    </script>
+  </body>
+</html>

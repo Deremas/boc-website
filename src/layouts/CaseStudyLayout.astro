@@ -1,0 +1,95 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import CTA from "../components/common/CTA.astro";
+import CaseStudyHero from "../components/work/CaseStudyHero.astro";
+import ResultsMetrics from "../components/work/ResultsMetrics.astro";
+import TestimonialCard from "../components/common/TestimonialCard.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"caseStudies">;
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+const crumbs = [
+  { name: "Home", url: "https://blueoceancreatives.com/" },
+  { name: "Our Work", url: "https://blueoceancreatives.com/work" },
+  { name: data.title, url: `https://blueoceancreatives.com/work/${entry.id}` },
+];
+---
+
+<BaseLayout title={`${data.title} — Case Study | Blue Ocean Creatives`} description={data.headlineResult}>
+  <CaseStudyHero
+    title={data.title}
+    sector={data.sector}
+    location={data.location}
+    services={data.services}
+    image={data.heroImage}
+    headline={data.headlineResult}
+  />
+  <section>
+    <div class="container">
+      <h2>At a glance</h2>
+      <div class="glance" style="margin-top: 16px;">
+        <div><span>Client</span><strong>{data.title}</strong></div>
+        <div><span>Sector</span><strong>{data.sector}</strong></div>
+        <div><span>Location</span><strong>{data.location || "—"}</strong></div>
+        <div><span>Services</span><strong>{data.services.join(" · ")}</strong></div>
+        {data.since && <div><span>Since</span><strong>{data.since}</strong></div>}
+        {data.reference && <div><span>Reference</span><strong>{data.reference}</strong></div>}
+      </div>
+    </div>
+  </section>
+  <section class="section-tint">
+    <div class="container prose" style="max-width: 760px; margin-inline: auto;">
+      <slot />
+      <ResultsMetrics metrics={data.metrics} source={data.source} />
+    </div>
+  </section>
+  {
+    data.quote && data.quoteName && data.quoteRole && data.quoteCompany && (
+      <section>
+        <div class="container" style="max-width: 760px;">
+          <TestimonialCard
+            quote={data.quote}
+            name={data.quoteName}
+            role={data.quoteRole}
+            company={data.quoteCompany}
+          />
+        </div>
+      </section>
+    )
+  }
+  {
+    data.gallery && data.gallery.length > 0 && (
+      <section>
+        <div class="container">
+          <h2>Gallery</h2>
+          <div class="feature-grid" style="margin-top: 20px;">
+            {data.gallery.map((src) => (
+              <img src={src} alt={`${data.title} work`} loading="lazy" style="width:100%; border-radius:16px;" />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+  <CTA
+    title="Want results like these?"
+    text="Tell us what you need — we reply within one working day."
+    primaryLabel={data.category === "business-systems" ? "Book a demo" : "Get a proposal"}
+    primaryHref={data.category === "business-systems" ? "/contact?interest=Blue%20Ocean%20ERP%20demo" : "/contact"}
+    primaryTrack={data.category === "business-systems" ? "erp-demo" : "proposal"}
+  />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  })} />
+</BaseLayout>

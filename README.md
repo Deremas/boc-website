@@ -1,43 +1,36 @@
-# Astro Starter Kit: Minimal
+# Blue Ocean Creatives
 
-```sh
-npm create astro@latest -- --template minimal
+Corporate website for Blue Ocean Creatives (Blue Pixel Trading PLC).
+
+The content and design source of truth is `docs/BOC_Website_Plan_2026.md`. Do not invent statistics, clients, testimonials, or company facts.
+
+## Stack
+
+- Astro, TypeScript, Tailwind CSS
+- React only for the mobile menu, work filter, testimonial carousel, ERP module tabs, and contact form
+- Lexend, self-hosted in `public/fonts`
+
+## Commands
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Local site: http://localhost:4321
 
-## 🚀 Project Structure
+## Environment
 
-Inside of your Astro project, you'll see the following folders and files:
+Copy `.env.example` to `.env`. Production secrets belong in Cloudflare, not in git.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Contact enquiries post to `/api/contact`, then to email (Resend) and Telegram. Cloudflare Turnstile runs when the keys are set.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Still to drop in
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- ERP dashboard screenshot with demo data
+- Chekela app screenshots
+- Logos still shown as names: Konel, Nova Water, Wow Energy, Fikreselam, Liesak, Evolve
+- A portrait of Nathnael Zerihun
+- Original post URLs for the creative showcase

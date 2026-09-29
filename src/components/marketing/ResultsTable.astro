@@ -1,0 +1,36 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import { marketingResults } from "../../data/services";
+---
+
+<section id="verified-results">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Verified results"
+      title="12 months to February 2026."
+    />
+    <div class="card" style="overflow:auto;">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th>Platform</th>
+            <th>Results</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            marketingResults.map((row) => (
+              <tr>
+                <td data-label="Account">{row.account}</td>
+                <td data-label="Platform">{row.platform}</td>
+                <td data-label="Results">{row.results.join(" · ")}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="caption">Source: Meta Business Suite and TikTok Analytics. Screenshots available on request.</p>
+  </div>
+</section>

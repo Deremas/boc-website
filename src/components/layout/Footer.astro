@@ -1,0 +1,109 @@
+---
+import Icon from "../common/Icon.astro";
+import { company } from "../../data/company";
+import { socials } from "../../data/socials";
+
+const year = new Date().getFullYear();
+
+function iconName(name: string) {
+  if (name.startsWith("Facebook")) return "facebook" as const;
+  if (name.startsWith("Instagram")) return "instagram" as const;
+  if (name.startsWith("TikTok")) return "tiktok" as const;
+  if (name.startsWith("LinkedIn")) return "linkedin" as const;
+  return "telegram" as const;
+}
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="/">
+        <img src="/logos/blue-ocean-logo.png" alt="" width="160" height="68" />
+      </a>
+      <p style="margin-top: 14px; max-width: 36ch;">
+        Digital marketing and business systems for Ethiopian companies. On the ground in Addis Ababa, Dire Dawa and Adama.
+      </p>
+    </div>
+    <div>
+      <h2>Marketing</h2>
+      <ul>
+        <li><a href="/digital-marketing">Digital Marketing</a></li>
+        <li><a href="/work">Our Work</a></li>
+        <li><a href="/contact" data-track="proposal">Get a proposal</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Systems</h2>
+      <ul>
+        <li><a href="/business-systems">Business Systems</a></li>
+        <li><a href="/chekela">Chekela</a></li>
+        <li><a href="/contact?interest=Blue%20Ocean%20ERP%20demo" data-track="erp-demo">Book an ERP demo</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Company</h2>
+      <ul>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href={company.profilePdf} data-track="profile-download">Company profile</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h2>Contact</h2>
+      <ul class="icon-list">
+        <li class="icon-line">
+          <Icon name="pin" />
+          <span>Addis Ababa, Dire Dawa and Adama</span>
+        </li>
+        <li class="icon-line">
+          <Icon name="phone" />
+          <span class="inline-links">
+            <a href={`tel:${company.phoneTel}`} data-track="phone">{company.phone}</a>
+            <a href={`tel:${company.phoneAltTel}`} data-track="phone">{company.phoneAlt}</a>
+          </span>
+        </li>
+        <li class="icon-line">
+          <Icon name="mail" />
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+        </li>
+      </ul>
+      <div class="social-row">
+        {
+          socials.map((social) => (
+            <a
+              class={`social-${iconName(social.name)}`}
+              href={social.url}
+              aria-label={social.name}
+              title={social.name}
+              data-track={social.name === "Telegram" ? "telegram" : undefined}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name={iconName(social.name)} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <p>© <time id="copyright-year" datetime={String(year)}>{year}</time> {company.legalName}, trading as {company.name}.</p>
+  </div>
+</footer>
+
+<script>
+  const node = document.getElementById("copyright-year");
+  if (node) {
+    const current = String(new Date().getFullYear());
+    node.textContent = current;
+    node.setAttribute("datetime", current);
+  }
+</script>
+
+<style>
+  .site-footer .logo img {
+    width: 160px;
+    filter: brightness(0) invert(1);
+  }
+</style>

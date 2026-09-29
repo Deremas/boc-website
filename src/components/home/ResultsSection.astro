@@ -1,0 +1,24 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import ResultCard from "../common/ResultCard.astro";
+import LogoWall from "../common/LogoWall.astro";
+import { homeResults } from "../../data/services";
+import { getCollection } from "astro:content";
+
+const clients = (await getCollection("clients"))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order);
+---
+
+<section class="section-tint">
+  <div class="container">
+    <SectionHeading
+      title="Results, not promises."
+      text="Figures below are from platform analytics or signed client references."
+    />
+    <div class="result-grid">
+      {homeResults.map((item) => <ResultCard {...item} />)}
+    </div>
+    <LogoWall clients={clients} />
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  text: string;
+  points?: string[];
+  href: string;
+  label: string;
+  dark?: boolean;
+}
+
+const { eyebrow, title, text, points = [], href, label, dark = false } = Astro.props;
+---
+
+<article class:list={["card", { "card-dark": dark }]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h3>{title}</h3>
+  <p>{text}</p>
+  {
+    points.length > 0 && (
+      <ul>
+        {points.map((point) => (
+          <li>{point}</li>
+        ))}
+      </ul>
+    )
+  }
+  <a class:list={["btn", dark ? "btn-light" : "btn-primary"]} href={href}>
+    {label}
+  </a>
+</article>

@@ -1,0 +1,20 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import { otherSystems } from "../../data/services";
+---
+
+<section class="section-tint">
+  <div class="container">
+    <SectionHeading title="More systems we deliver." />
+    <div class="service-grid">
+      {
+        otherSystems.map((card) => (
+          <article class="card">
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

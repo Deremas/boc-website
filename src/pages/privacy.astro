@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { company } from "../data/company";
+---
+
+<BaseLayout
+  title="Privacy Policy | Blue Ocean Creatives"
+  description="How Blue Ocean Creatives handles enquiry details, analytics and contact information."
+>
+  <section>
+    <div class="container prose" style="max-width: 760px;">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy</h1>
+      <p>
+        {company.legalName}, trading as {company.name}, uses this website to answer enquiries about digital marketing, business systems and Chekela.
+      </p>
+      <h2>What the contact form collects</h2>
+      <p>
+        If you write to us, we receive the name, company, phone number, email address, interest, preferred contact method and message you submit. We use that information to reply. A copy is sent to our email and to our sales Telegram group. We do not sell the form contents.
+      </p>
+      <h2>Spam check</h2>
+      <p>The form uses Cloudflare Turnstile to reject automated submissions. Cloudflare receives the check required to do that.</p>
+      <h2>Analytics</h2>
+      <p>
+        When the measurement IDs are configured, the site loads Google Analytics 4, the Meta pixel and the TikTok pixel. Those tools record page views and the events listed in our website plan, including form submissions, proposal and demo clicks, phone and Telegram clicks, company-profile downloads, Chekela clicks and case-study clicks.
+      </p>
+      <h2>How to reach us</h2>
+      <p>
+        Email {company.email} or call {company.phone}. Office: {company.address}.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import { marketingProcess } from "../../data/services";
+---
+
+<section class="section-tint">
+  <div class="container">
+    <SectionHeading eyebrow="How we work" title="From audit to the next report." />
+    <ol class="steps">
+      {
+        marketingProcess.map((item) => (
+          <li class="step">
+            <b>{item.step}</b>
+            <strong>{item.title}</strong>
+            <p>{item.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

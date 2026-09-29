@@ -1,0 +1,40 @@
+---
+import SectionHeading from "../common/SectionHeading.astro";
+import { implementationSteps } from "../../data/services";
+---
+
+<section class="section-tint">
+  <div class="container">
+    <SectionHeading title="How implementation works." />
+    <ol class="steps impl-steps">
+      {
+        implementationSteps.map((step, index) => (
+          <li class="step">
+            <b>0{index + 1}</b>
+            <strong>{step.title}</strong>
+            <p>{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="caption">On-site support from our teams in Addis Ababa and Dire Dawa.</p>
+  </div>
+</section>
+
+<style>
+  .impl-steps {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  @media (max-width: 1024px) {
+    .impl-steps {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .impl-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

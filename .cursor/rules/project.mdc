@@ -1,0 +1,81 @@
+---
+description: Blue Ocean Creatives website development rules
+alwaysApply: true
+---
+
+# Project
+
+Blue Ocean Creatives corporate website.
+
+# Stack
+
+- Astro
+- TypeScript
+- Tailwind CSS
+- React only when browser state or interactivity is required
+
+# Source of Truth
+
+docs/BOC_Website_Plan_2026.md
+
+Do not invent:
+
+- statistics
+- clients
+- testimonials
+- project results
+- locations
+- services
+- company details
+
+# Type
+
+The primary typeface is Lexend, self-hosted. Do not switch the site back to Poppins.
+
+# UI
+
+Use:
+
+- clean whitespace
+- large headings
+- navy and blue brand palette
+- rounded cards
+- real photography
+- real system screenshots
+
+Avoid:
+
+- generic templates
+- excessive gradients
+- glassmorphism
+- heavy animations
+- fake statistics
+- generic stock photos
+
+# Components
+
+Prefer Astro components.
+
+Use React only when necessary.
+
+# Responsive
+
+Everything must work at 360px.
+
+No horizontal overflow.
+
+# Performance
+
+Optimize images.
+Lazy-load below-the-fold assets.
+Minimize JavaScript.
+
+# SEO
+
+Use approved page titles and descriptions from the website plan.
+
+# Code quality
+
+Keep components reusable.
+Avoid large monolithic pages.
+Do not duplicate business data.

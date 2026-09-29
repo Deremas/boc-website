@@ -1,0 +1,19 @@
+---
+import { erpStats } from "../../data/services";
+---
+
+<section class="proof-bar" aria-label="Blue Ocean ERP">
+  <div class="container">
+    <p class="eyebrow" style="color:#9fd4f2;">Blue Ocean ERP</p>
+    <div class="proof-grid">
+      {
+        erpStats.map((item) => (
+          <div>
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
