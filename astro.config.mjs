@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import cloudflare from "@astrojs/cloudflare";
+import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 
 const oldRoutes = {
@@ -39,7 +40,7 @@ export default defineConfig({
   site: "https://blueoceancreatives.com",
   output: "static",
   session: false,
-  adapter: cloudflare({ imageService: "passthrough" }),
+  adapter: process.env.VERCEL ? vercel() : cloudflare({ imageService: "passthrough" }),
   trailingSlash: "never",
   integrations: [react(), sitemap()],
   vite: {
