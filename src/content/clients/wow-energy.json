@@ -1,4 +1,6 @@
 {
   "name": "Wow Energy",
+  "logo": "/logos/clients/wow-energy.png",
+  "color": true,
   "order": 6
 }

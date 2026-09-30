@@ -11,30 +11,39 @@ export const company = {
   emailCoo: "coo@blueoceancreatives.com",
   address:
     "Beyene Tebelue (BT) Building, 3rd Floor, Office 301, Axum Hotel Street, Haya Hulet, Addis Ababa",
-  mapQuery: "Beyene Tebelue Building, Haya Hulet, Addis Ababa",
+  mapUrl:
+    "https://www.google.com/maps/place/Blue+Ocean+Creatives/@9.0153711,38.7833628,17z/data=!4m6!3m5!1s0x6139501b1ecfd047:0x96a57a593b117e55!8m2!3d9.0153711!4d38.7833628",
+  mapEmbed:
+    "https://maps.google.com/maps?cid=10855217000508128853&z=17&output=embed",
   locations: [
     {
       city: "Addis Ababa",
       role: "Headquarters",
-      detail: "Leadership, engineering, ERP implementation, the creative studio and account management.",
+      detail:
+        "Leadership, engineering, ERP implementation, the creative studio and account management.",
       staff: "15+",
     },
     {
       city: "Dire Dawa",
       role: "IT and social media",
-      detail: "On-site ERP implementation and support for manufacturers in the east, plus Somali and Afaan Oromoo hosts.",
+      detail:
+        "On-site ERP implementation and support for manufacturers in the east, plus Somali and Afaan Oromoo hosts.",
       staff: "5+",
     },
     {
       city: "Adama",
       role: "Production",
-      detail: "Resident production team since April 2025, including Lavish Medical Spa Adama and regional content.",
+      detail:
+        "Resident production team since April 2025, including Lavish Medical Spa Adama and regional content.",
       staff: "3+",
     },
   ],
   staff: "23+",
   telegram: "https://t.me/Blue_Ocean_Creatives",
   chekelaUrl: "https://chkela.com",
+  chekelaPlayUrl:
+    "https://play.google.com/store/apps/details?id=com.chkela.v1&hl=en",
+  chekelaAppStoreUrl: "https://apps.apple.com/ke/app/chkela/id6738397728",
   profilePdf: "/documents/blue-ocean-company-profile.pdf",
 } as const;
 
@@ -137,29 +146,70 @@ export const org = {
 
 export const teamGroups = [
   {
-    wing: "Video editors",
+    wing: "Video Editors",
     people: [
-      { name: "Yonas Mano", role: "Video editor", image: "/images/team/yonas-mano.png" },
-      { name: "Eskinder Tamrat", role: "Video editor", image: "/images/team/eskinder-tamrat.png" },
-      { name: "Tsinfeadam Hailu", role: "Video editor", image: "/images/team/tsinfeadam-hailu.png" },
+      {
+        name: "Yonas Mano",
+        role: "Video Editor",
+        image: "/images/team/yonas-mano.png",
+      },
+      {
+        name: "Eskinder Tamrat",
+        role: "Video Editor",
+        image: "/images/team/eskinder-tamrat.png",
+      },
+      {
+        name: "Tsinfeadam Hailu",
+        role: "Video Editor",
+        image: "/images/team/tsinfeadam-hailu.png",
+      },
     ],
   },
   {
-    wing: "Social media managers and hosts",
+    wing: "Social Media Managers and Hosts",
     people: [
-      { name: "Yeabkal Abera (Koki)", role: "Social media manager and host", image: "/images/team/yeabkal-abera-2.png" },
-      { name: "Yeabsira Tesfaye (Maya)", role: "Social media manager and host", image: "/images/team/yeabsira-tesfaye-2.png" },
-      { name: "Yeabsira Terefe", role: "Social media manager and host", image: "" },
-      { name: "Saron Aklile", role: "Social media manager, host and sales", image: "" },
+      {
+        name: "Yeabkal Abera (Koki)",
+        role: "Social Media Manager and Host",
+        image: "/images/team/yeabkal-abera-2.png",
+      },
+      {
+        name: "Yeabsira Tesfaye (Maya)",
+        role: "Social Media Manager and Host",
+        image: "/images/team/yeabsira-tesfaye-2.png",
+      },
+      {
+        name: "Yeabsira Terefe",
+        role: "Social Media Manager and Host",
+        image: "",
+      },
+      {
+        name: "Saron Aklile",
+        role: "Social Media Manager, Host and Sales",
+        image: "",
+      },
     ],
   },
   {
     wing: "Cinematography",
-    people: [{ name: "Rebira Abraham", role: "Cinematographer and video editor", image: "/images/team/rebira-abraham-3.png", frame: "full" }],
+    people: [
+      {
+        name: "Rebira Abraham",
+        role: "Cinematographer and Video Editor",
+        image: "/images/team/rebira-abraham-3.png",
+        frame: "full",
+      },
+    ],
   },
   {
     wing: "Technology Wing",
-    people: [{ name: "Dereje Masresha", role: "Full-stack developer", image: "/images/team/dereje-masresha-2.png" }],
+    people: [
+      {
+        name: "Dereje Masresha",
+        role: "Full-stack ERP Developer",
+        image: "/images/team/dereje-masresha-2.png",
+      },
+    ],
   },
 ] as const;
 
@@ -206,7 +256,7 @@ export const timeline = [
   },
   {
     year: "2025",
-    text: "Social media training at Nisir Training Center, later published on Chekela. Adama production team and Dire Dawa team set up. Stock systems pass 100 businesses. Odoo delivered for Nokdes and Nova Water.",
+    text: "Social media training at Nisir Training Center, later published on Chekela. Adama production team and Dire Dawa team set up. Stock systems pass 100 businesses. Blue Ocean ERP delivered for Nova Water. Odoo delivered for Nokdes.",
   },
   {
     year: "2026",

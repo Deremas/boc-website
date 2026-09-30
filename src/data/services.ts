@@ -1,66 +1,46 @@
 export const marketingServices = [
   {
     title: "Social media management",
-    text: "Strategy, content calendars, daily publishing and monthly reporting.",
+    text: "Strategy, content calendars, daily publishing and monthly reporting. Replies, livestreams and Q&A, with sensitive questions escalated to you.",
   },
   {
-    title: "Content and video production",
-    text: "Scriptwriting, on-site filming, editing, motion graphics, photography and design, with on-camera hosts.",
+    title: "Content and video",
+    text: "Scriptwriting, on-site filming, editing, motion graphics, photography and design, with on-camera hosts. YouTube strategy and long-form storytelling.",
   },
   {
-    title: "Paid advertising",
-    text: "Meta, TikTok, Google Ads and Telegram Ads — targeting, A/B testing and budget optimisation for lower cost per lead.",
+    title: "Paid ads and tracking",
+    text: "Meta, TikTok, Google Ads and Telegram Ads, with targeting and testing for a lower cost per lead. GA4 and pixels record calls, WhatsApp and Telegram clicks, enquiries and form submissions.",
   },
   {
-    title: "Analytics and conversion tracking",
-    text: "GA4, Google Tag Manager and pixels tracking calls, WhatsApp and Telegram clicks, enquiries and form submissions.",
-  },
-  {
-    title: "Community management",
-    text: "Fast replies to comments and messages, livestreams and Q&A, with sensitive questions escalated to you.",
-  },
-  {
-    title: "YouTube and long-form",
-    text: "Channel strategy and long-form storytelling that builds retention and organic growth.",
-  },
-  {
-    title: "Branding and identity",
-    text: "Logos, visual identity, brand guidelines and launch assets.",
-  },
-  {
-    title: "Influencer collaborations",
-    text: "The right creators, briefed and managed.",
-  },
-  {
-    title: "Training",
-    text: "Digital marketing, content and paid ads training for in-house teams — in person or on Chekela.",
+    title: "Brand, creators and training",
+    text: "Logos, visual identity, guidelines and launch assets. Creators briefed and managed. Training for in-house teams, in person or on Chekela.",
   },
 ] as const;
 
 export const marketingProcess = [
-  { step: "01", title: "Audit", text: "We review your channels, audience, competitors and results to set a clear baseline." },
-  { step: "02", title: "Strategy", text: "We agree goals, audiences, platform roles, content pillars and KPIs with you in writing." },
-  { step: "03", title: "Create", text: "Our studio produces designs, videos and copy in your brand voice, in Amharic, English or both." },
-  { step: "04", title: "Publish & engage", text: "Scheduled publishing and active community management: comments, messages and replies." },
-  { step: "05", title: "Amplify", text: "Paid campaigns and creator partnerships extend your reach beyond existing followers." },
-  { step: "06", title: "Measure & improve", text: "Monthly reports from platform analytics, with clear actions for the next month." },
+  { step: "01", title: "Audit", text: "Channels, audience, competitors and the results so far." },
+  { step: "02", title: "Strategy", text: "Goals, platforms, content pillars and KPIs, agreed in writing." },
+  { step: "03", title: "Create", text: "Design, video and copy from our studio, in the audience’s language." },
+  { step: "04", title: "Publish & engage", text: "Scheduled posts, and replies to comments and messages." },
+  { step: "05", title: "Amplify", text: "Paid campaigns and creators, past the people who already follow." },
+  { step: "06", title: "Measure & improve", text: "A monthly report, and what changes next." },
 ] as const;
 
 export const marketingResults = [
   {
     account: "Lavish Medical Spa, Addis Ababa",
     platform: "TikTok",
-    results: ["13M views", "317K likes", "35K shares", "5,777 comments"],
+    results: ["13M views", "317K likes", "35K shares"],
   },
   {
     account: "Lavish Medical Spa, Addis Ababa",
     platform: "Facebook & Instagram",
-    results: ["4.2M views", "59.7K interactions", "40.3K page visits", "7.5K new follows"],
+    results: ["4.2M views", "59.7K interactions", "7.5K new follows"],
   },
   {
     account: "Lavish Medical Spa, Dire Dawa",
     platform: "TikTok",
-    results: ["3.9M views", "138K likes", "15K shares"],
+    results: ["3.9M views", "138K likes"],
   },
   {
     account: "Peniel Training Institute",
@@ -68,63 +48,45 @@ export const marketingResults = [
     results: ["8.3M views", "18.7K link clicks", "32.7K page visits"],
   },
   {
-    account: "Peniel Training Institute",
-    platform: "TikTok",
-    results: ["2.2M views", "152K likes", "12K shares"],
-  },
-  {
     account: "Apex Financial Solutions",
     platform: "Facebook & Instagram",
     results: ["3.4M views", "51.7K interactions", "11.2K new follows"],
   },
-  {
-    account: "Apex Financial Solutions",
-    platform: "TikTok",
-    results: ["2.3M views", "129K likes", "12K shares"],
-  },
 ] as const;
 
 export const languageExamples = [
-  { client: "Lavish Medical Spa", languages: "Amharic, Afaan Oromoo, Somali" },
-  { client: "BeMaleda Trading", languages: "Amharic, Afaan Oromoo, Tigrigna" },
-  { client: "Gursha Hub", languages: "Amharic, Afaan Oromoo" },
-  { client: "Phi Engineering", languages: "Amharic, Afaan Oromoo" },
-  { client: "Union Specialty Dental Clinic", languages: "Tigrigna" },
+  {
+    client: "Lavish Medical Spa",
+    languages: "Amharic, Afaan Oromoo, Somali",
+  },
+  {
+    client: "BeMaleda Trading",
+    languages: "Amharic, Afaan Oromoo, Tigrigna",
+  },
 ] as const;
 
 export const healthClients = [
   { name: "Lavish Medical Spa", logo: "/logos/clients/lavish.jpg" },
-  { name: "Fikreselam General Hospital" },
+  { name: "Fikreselam General Hospital", logo: "/logos/clients/fikreselam.png" },
   { name: "Harme Medical Center", logo: "/logos/clients/harme.jpg" },
-  { name: "Union Specialty Dental Clinic" },
-  { name: "Radiant Health Club", logo: "/logos/clients/radiant.jpg" },
+  { name: "Viola Brows & Beauty", logo: "/logos/clients/viola.png" },
 ] as const;
 
 export const showcase = [
   {
-    title: "Master Henok",
-    image: "/images/marketing/instagram-01.png",
-    href: "https://instagram.com/blue_ocean_creatives",
+    title: "Lavish Medical Spa",
+    image: "/logos/clients/lavish.jpg",
+    href: "/work/lavish-medical-spa",
   },
   {
-    title: "In-house social creative",
-    image: "/images/marketing/instagram-02.png",
-    href: "https://instagram.com/blue_ocean_creatives",
+    title: "Peniel Training Institute",
+    image: "/logos/clients/peniel.jpg",
+    href: "/work/peniel",
   },
   {
-    title: "In-house social creative",
-    image: "/images/marketing/instagram-03.png",
-    href: "https://instagram.com/blue_ocean_creatives",
-  },
-  {
-    title: "In-house social creative",
-    image: "/images/marketing/instagram-04.png",
-    href: "https://www.tiktok.com/@blue_ocean_creatives",
-  },
-  {
-    title: "On location",
-    image: "/images/team/team-dsc.jpg",
-    href: "https://instagram.com/blue_ocean_creatives",
+    title: "Apex Financial Solutions",
+    image: "/logos/clients/apex.jpg",
+    href: "/work/apex",
   },
 ] as const;
 
@@ -191,7 +153,7 @@ export const painPoints = [
 export const otherSystems = [
   {
     title: "Odoo implementation",
-    text: "For clients who prefer an international platform — configuration, custom modules, migration and training. Nova Water and Nokdes Trading run on Odoo systems we delivered.",
+    text: "For clients who prefer an international platform — configuration, custom modules, migration and training. Nokdes Trading runs on an Odoo system we delivered.",
   },
   {
     title: "Stock and financial management",
@@ -216,7 +178,7 @@ export const systemProjects = [
   },
   {
     client: "Nova Water (Melayan Manufacturing), Sebeta",
-    system: "Odoo ERP for manufacturing, procurement and quality, in three months",
+    system: "Blue Ocean ERP for manufacturing, procurement and quality, in three months",
     reference: "Nov 2025",
     href: "/work/nova-water",
   },
@@ -230,12 +192,15 @@ export const systemProjects = [
     client: "Vector Advertising & Manufacturing",
     system: "Full-scale ERP for a job-order manufacturer",
     reference: "Feb 2026",
+    href: "/work/vector",
+    website: "https://vector4.app/",
   },
   {
     client: "Apex Financial Solutions",
     system: "ERP plus the Apex Tax School training platform",
     reference: "2026",
     href: "/work/apex",
+    website: "https://apextaxschool.com/",
   },
   {
     client: "Nokdes Trading",

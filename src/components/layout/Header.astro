@@ -1,8 +1,10 @@
 ---
 import { navigation, talkHref } from "../../data/navigation";
+import { company } from "../../data/company";
 import MobileMenu from "./MobileMenu";
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const current = (href: string) => path === href || path.startsWith(`${href}/`);
 ---
 
 <header class="site-header">
@@ -13,7 +15,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     <nav class="desktop-nav" aria-label="Primary">
       {
         navigation.map((item) => (
-          <a href={item.href} aria-current={path === item.href ? "page" : undefined}>
+          <a href={item.href} aria-current={current(item.href) ? "page" : undefined}>
             {item.label}
           </a>
         ))
@@ -22,7 +24,10 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     </nav>
     <div class="header-actions">
       <a class="btn btn-primary header-cta mobile-only-cta" href={talkHref}>Talk to us</a>
-      <MobileMenu client:load links={[...navigation]} />
+      <MobileMenu
+        client:load
+        links={[...navigation, { label: "Download company profile", href: company.profilePdf, external: true }]}
+      />
     </div>
   </div>
 </header>

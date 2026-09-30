@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 
-type Link = { label: string; href: string };
+type Link = { label: string; href: string; external?: boolean };
 
 function MenuIcon() {
   return (
@@ -12,6 +12,21 @@ function MenuIcon() {
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function DownloadMark() {
+  return (
+    <svg className="download-mark" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 4v10M8 10l4 4 4-4M5 19h14"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -69,10 +84,8 @@ export default function MobileMenu({ links }: { links: Link[] }) {
 
   const onNavigate = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     const current = window.location.pathname.replace(/\/$/, "") || "/";
-    if (current === href) {
-      event.preventDefault();
-      setOpen(false);
-    }
+    if (current === href) event.preventDefault();
+    setOpen(false);
   };
 
   return (
@@ -99,13 +112,18 @@ export default function MobileMenu({ links }: { links: Link[] }) {
             />
             <nav ref={panelRef} id={panelId} className="mobile-panel" aria-label="Mobile">
               {links.map((link) => (
-                <a key={link.href} href={link.href} onClick={(event) => onNavigate(event, link.href)}>
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={link.external ? "profile-link" : undefined}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  onClick={(event) => onNavigate(event, link.href)}
+                >
+                  {link.external ? <DownloadMark /> : null}
                   {link.label}
                 </a>
               ))}
-              <a href="/contact" onClick={(event) => onNavigate(event, "/contact")}>
-                Talk to us
-              </a>
             </nav>
           </>,
           document.body,

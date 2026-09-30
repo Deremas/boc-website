@@ -11,8 +11,8 @@ export default function WorkFilter() {
 
   useEffect(() => {
     document.querySelectorAll<HTMLElement>("[data-work-card]").forEach((card) => {
-      const category = card.dataset.category;
-      card.hidden = active !== "all" && category !== active;
+      const categories = (card.dataset.category ?? "").split(/\s+/);
+      card.hidden = active !== "all" && !categories.includes(active);
     });
   }, [active]);
 
@@ -25,11 +25,6 @@ export default function WorkFilter() {
           className="btn btn-secondary"
           aria-pressed={active === filter.id}
           onClick={() => setActive(filter.id)}
-          style={
-            active === filter.id
-              ? { background: "#0b2e4f", color: "white", borderColor: "#0b2e4f" }
-              : undefined
-          }
         >
           {filter.label}
         </button>

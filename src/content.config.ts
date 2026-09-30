@@ -5,11 +5,15 @@ const caseStudies = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/case-studies" }),
   schema: z.object({
     title: z.string(),
-    category: z.enum(["digital-marketing", "business-systems"]),
+    category: z.union([
+      z.enum(["digital-marketing", "business-systems"]),
+      z.array(z.enum(["digital-marketing", "business-systems"])).min(1),
+    ]),
     sector: z.string(),
     location: z.string().default(""),
     headlineResult: z.string(),
     heroImage: z.string().optional(),
+    website: z.string().optional(),
     services: z.array(z.string()),
     since: z.string().optional(),
     reference: z.string().optional(),
@@ -39,6 +43,8 @@ const clients = defineCollection({
   schema: z.object({
     name: z.string(),
     logo: z.string().optional(),
+    color: z.boolean().optional(),
+    website: z.string().optional(),
     order: z.number(),
   }),
 });

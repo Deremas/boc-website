@@ -1,10 +1,13 @@
 ---
 title: "Apex Financial Solutions"
-category: "digital-marketing"
+category:
+  - digital-marketing
+  - business-systems
 sector: "Financial services"
 location: "Addis Ababa"
-headlineResult: "3.4M Meta views and 11.2K new follows"
-heroImage: "/logos/clients/apex.jpg"
+headlineResult: "3.4M Meta views · 11.2K new follows · high-quality leads"
+heroImage: "/images/systems/apex-tax-school.png"
+website: "https://apextaxschool.com/"
 services:
   - Paid advertising
   - Facebook & Instagram
@@ -32,7 +35,7 @@ Apex needed paid media and content that could be tied to business outcomes for i
 
 ## What we did
 
-Since August 2024 we have run full digital marketing and content production across TikTok, Facebook and Instagram: strategic planning, content development, multimedia production, social media management and paid advertising. Separately, the systems practice delivered an ERP and the Apex Tax School training platform.
+Since August 2024 we have run full digital marketing and content production across TikTok, Facebook and Instagram: strategic planning, content development, multimedia production, social media management and paid advertising. Separately, the systems practice delivered an ERP and the [Apex Tax School](https://apextaxschool.com/) training platform.
 
 ## Results
 

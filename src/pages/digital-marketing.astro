@@ -6,15 +6,22 @@ import MarketingProcess from "../components/marketing/MarketingProcess.astro";
 import ResultsTable from "../components/marketing/ResultsTable.astro";
 import CreativeShowcase from "../components/marketing/CreativeShowcase.astro";
 import CTA from "../components/common/CTA.astro";
-import TestimonialCard from "../components/common/TestimonialCard.astro";
+import TestimonialCarousel from "../components/home/TestimonialCarousel";
 import SectionHeading from "../components/common/SectionHeading.astro";
 import { getCollection } from "astro:content";
-import { languageExamples, healthClients } from "../data/services";
+import { healthClients, languageExamples } from "../data/services";
 import { languages } from "../data/company";
 
-const quotes = (await getCollection("testimonials")).filter((entry) =>
-  entry.data.pages.includes("marketing"),
-);
+const quoteOrder = ["apex", "peniel", "evolve", "ag-grace", "builders"];
+const quotes = (await getCollection("testimonials"))
+  .filter((entry) => entry.data.pages.includes("marketing"))
+  .sort((a, b) => quoteOrder.indexOf(a.id) - quoteOrder.indexOf(b.id))
+  .map((entry) => ({
+    quote: entry.data.quote,
+    name: entry.data.name,
+    role: entry.data.role,
+    company: entry.data.company,
+  }));
 ---
 
 <BaseLayout
@@ -38,18 +45,18 @@ const quotes = (await getCollection("testimonials")).filter((entry) =>
       <div>
         <SectionHeading
           title="Speaking every audience’s language."
-          text="Resident teams in Dire Dawa and Adama produce work in the language people actually use."
+          text="Resident teams in Dire Dawa and Adama produce the work in the language people use."
         />
         <div class="chips">
           {languages.map((language) => <span class="chip">{language}</span>)}
         </div>
       </div>
-      <ul class="service-grid" style="list-style:none; padding:0; margin:0;">
+      <ul class="lang-examples">
         {
           languageExamples.map((example) => (
-            <li class="card">
-              <h3>{example.client}</h3>
-              <p>{example.languages}</p>
+            <li>
+              <strong>{example.client}</strong>
+              <span>{example.languages}</span>
             </li>
           ))
         }
@@ -59,16 +66,16 @@ const quotes = (await getCollection("testimonials")).filter((entry) =>
   <section>
     <div class="container">
       <SectionHeading
-        eyebrow="Health"
-        title="Health communication is checked before it goes live."
+        title="Health-sector experience."
         text="Health communication must be accurate, culturally appropriate and approved before it goes live."
       />
-      <div class="logo-wall">
+      <div class="result-grid logo-pair">
         {
           healthClients.map((client) => (
-            <div class="logo-tile">
-              {client.logo ? <img src={client.logo} alt={`${client.name} logo`} loading="lazy" /> : <span>{client.name}</span>}
-            </div>
+            <article class="card health-client">
+              {"logo" in client && <img src={client.logo} alt="" />}
+              <h3>{client.name}</h3>
+            </article>
           ))
         }
       </div>
@@ -78,9 +85,7 @@ const quotes = (await getCollection("testimonials")).filter((entry) =>
   <section class="section-tint">
     <div class="container">
       <SectionHeading title="From the reference letters." />
-      <div class="result-grid">
-        {quotes.map((entry) => <TestimonialCard {...entry.data} />)}
-      </div>
+      <TestimonialCarousel client:visible items={quotes} interval={3000} />
     </div>
   </section>
   <CTA
@@ -92,6 +97,51 @@ const quotes = (await getCollection("testimonials")).filter((entry) =>
 </BaseLayout>
 
 <style>
+  .lang-examples {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .lang-examples li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-block: 12px;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .lang-examples strong {
+    color: var(--color-navy);
+  }
+
+  .health-client {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 14px;
+  }
+
+  .health-client img {
+    width: 100%;
+    height: 96px;
+    object-fit: contain;
+  }
+
+  .health-client h3 {
+    margin: 0;
+  }
+
+  a.health-client {
+    text-decoration: none;
+  }
+
+  .lang-examples span {
+    color: var(--color-muted);
+  }
+
   @media (max-width: 768px) {
     .proof-grid {
       grid-template-columns: 1fr 1fr !important;

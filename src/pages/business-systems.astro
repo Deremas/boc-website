@@ -9,13 +9,18 @@ import ImplementationSteps from "../components/systems/ImplementationSteps.astro
 import FAQ from "../components/systems/FAQ.astro";
 import CTA from "../components/common/CTA.astro";
 import SectionHeading from "../components/common/SectionHeading.astro";
-import TestimonialCard from "../components/common/TestimonialCard.astro";
+import TestimonialCarousel from "../components/home/TestimonialCarousel";
 import { erpDifferences, erpModules, systemProjects } from "../data/services";
 import { getCollection } from "astro:content";
 
-const quotes = (await getCollection("testimonials")).filter((entry) =>
-  entry.data.pages.includes("systems"),
-);
+const quotes = (await getCollection("testimonials"))
+  .filter((entry) => entry.data.pages.includes("systems"))
+  .map((entry) => ({
+    quote: entry.data.quote,
+    name: entry.data.name,
+    role: entry.data.role,
+    company: entry.data.company,
+  }));
 ---
 
 <BaseLayout
@@ -43,7 +48,7 @@ const quotes = (await getCollection("testimonials")).filter((entry) =>
   <section>
     <div class="container">
       <SectionHeading title="Projects backed by reference letters." />
-      <div class="card" style="overflow:auto;">
+      <div class="card project-table" style="overflow:auto;">
         <table class="results-table">
           <thead>
             <tr>
@@ -57,7 +62,17 @@ const quotes = (await getCollection("testimonials")).filter((entry) =>
               systemProjects.map((project) => (
                 <tr>
                   <td data-label="Client">
-                    {project.href ? <a href={project.href}>{project.client}</a> : project.client}
+                    {
+                      project.href ? (
+                        <a href={project.href}>{project.client}</a>
+                      ) : "website" in project && project.website ? (
+                        <a href={project.website} target="_blank" rel="noopener noreferrer">
+                          {project.client}
+                        </a>
+                      ) : (
+                        project.client
+                      )
+                    }
                   </td>
                   <td data-label="System">{project.system}</td>
                   <td data-label="Reference">{project.reference}</td>
@@ -67,15 +82,34 @@ const quotes = (await getCollection("testimonials")).filter((entry) =>
           </tbody>
         </table>
       </div>
+      <div class="project-cards">
+        {
+          systemProjects.map((project) => (
+            <article class="card project-card">
+              <h3>{project.client}</h3>
+              <p>{project.system}</p>
+              <p class="project-ref">Reference · {project.reference}</p>
+              {project.href && (
+                <a class="text-link" href={project.href}>
+                  View project
+                </a>
+              )}
+              {"website" in project && project.website && (
+                <a class="text-link" href={project.website} target="_blank" rel="noopener noreferrer">
+                  {project.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                </a>
+              )}
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
   <ImplementationSteps />
   <section>
     <div class="container">
       <SectionHeading title="What the letters say." />
-      <div class="result-grid">
-        {quotes.map((entry) => <TestimonialCard {...entry.data} />)}
-      </div>
+      <TestimonialCarousel client:visible items={quotes} showAllFrom={1100} interval={0} />
     </div>
   </section>
   <FAQ />

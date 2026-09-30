@@ -26,6 +26,7 @@ const crumbs = [
     location={data.location}
     services={data.services}
     image={data.heroImage}
+    website={data.website}
     headline={data.headlineResult}
   />
   <section>
@@ -38,6 +39,18 @@ const crumbs = [
         <div><span>Services</span><strong>{data.services.join(" · ")}</strong></div>
         {data.since && <div><span>Since</span><strong>{data.since}</strong></div>}
         {data.reference && <div><span>Reference</span><strong>{data.reference}</strong></div>}
+        {
+          data.website && (
+            <div>
+              <span>Website</span>
+              <strong>
+                <a class="text-link" href={data.website} target="_blank" rel="noopener noreferrer">
+                  {data.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                </a>
+              </strong>
+            </div>
+          )
+        }
       </div>
     </div>
   </section>

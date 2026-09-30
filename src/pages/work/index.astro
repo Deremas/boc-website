@@ -6,12 +6,14 @@ import LogoWall from "../../components/common/LogoWall.astro";
 import CTA from "../../components/common/CTA.astro";
 import { getCollection } from "astro:content";
 
-const caseOrder = ["lavish-medical-spa", "peniel", "apex", "konel", "nova-water", "wow-energy"];
+const caseOrder = ["lavish-medical-spa", "peniel", "apex", "konel", "nova-water", "wow-energy", "vector", "viola", "pharmacy-stock"];
 const studies = (await getCollection("caseStudies")).sort(
   (a, b) => caseOrder.indexOf(a.id) - caseOrder.indexOf(b.id),
 );
+const caseStudyClients = new Set(["Lavish", "Apex", "Peniel", "Konel", "Nova Water", "Wow Energy", "Vector"]);
 const clients = (await getCollection("clients"))
   .map((entry) => entry.data)
+  .filter((client) => !caseStudyClients.has(client.name))
   .sort((a, b) => a.order - b.order);
 ---
 
@@ -38,6 +40,7 @@ const clients = (await getCollection("clients"))
           ))
         }
       </div>
+      <h2 style="margin-top: 48px;">Other clients</h2>
       <LogoWall clients={clients} />
     </div>
   </section>

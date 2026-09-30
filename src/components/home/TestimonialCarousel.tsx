@@ -16,34 +16,51 @@ function columnsFor(width: number) {
   return 1;
 }
 
-export default function TestimonialCarousel({ items }: { items: Testimonial[] }) {
+export default function TestimonialCarousel({
+  items,
+  interval = ROTATE_MS,
+  showAllFrom,
+}: {
+  items: Testimonial[];
+  interval?: number;
+  showAllFrom?: number;
+}) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [visible, setVisible] = useState(MAX_VISIBLE);
+  const [visible, setVisible] = useState(showAllFrom ? items.length : MAX_VISIBLE);
   const count = Math.min(visible, items.length);
-  const shownCount = Math.min(MAX_VISIBLE, items.length);
+  const showingAll = count >= items.length;
 
   useEffect(() => {
-    const apply = () => setVisible(columnsFor(window.innerWidth));
+    const apply = () => {
+      const width = window.innerWidth;
+      if (showAllFrom && width >= showAllFrom) {
+        setVisible(items.length);
+        return;
+      }
+      setVisible(columnsFor(width));
+    };
     apply();
     window.addEventListener("resize", apply);
     return () => window.removeEventListener("resize", apply);
-  }, []);
+  }, [items.length, showAllFrom]);
 
   useEffect(() => {
-    if (paused || items.length <= count) return;
+    if (paused || showingAll || interval <= 0 || items.length <= count) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const timer = window.setTimeout(() => {
       setIndex((value) => (value + 1) % items.length);
-    }, ROTATE_MS);
+    }, interval);
 
     return () => window.clearTimeout(timer);
-  }, [paused, index, items.length, count]);
+  }, [paused, index, items.length, count, interval, showingAll]);
 
   if (items.length === 0) return null;
 
-  const shown = Array.from({ length: shownCount }, (_, offset) => items[(index + offset) % items.length]);
+  const shown = showingAll
+    ? items
+    : Array.from({ length: count }, (_, offset) => items[(index + offset) % items.length]);
   const step = (direction: number) => setIndex((value) => (value + direction + items.length) % items.length);
 
   return (

@@ -22,11 +22,9 @@ export default function ModuleTabs({ groups }: { groups: Group[] }) {
           </button>
         ))}
       </div>
-      <ul className="service-grid" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+      <ul className="module-list">
         {current.items.map((item) => (
-          <li className="card" key={item}>
-            <h3>{item}</h3>
-          </li>
+          <li key={item}>{item}</li>
         ))}
       </ul>
     </div>

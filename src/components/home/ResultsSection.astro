@@ -19,6 +19,6 @@ const clients = (await getCollection("clients"))
     <div class="result-grid">
       {homeResults.map((item) => <ResultCard {...item} />)}
     </div>
-    <LogoWall clients={clients} />
+    <LogoWall clients={clients} marquee />
   </div>
 </section>

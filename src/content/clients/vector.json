@@ -1,5 +1,7 @@
 {
   "name": "Vector",
-  "logo": "/logos/clients/vector.jpg",
+  "logo": "/logos/clients/vector.png",
+  "color": true,
+  "website": "https://vector4.app/",
   "order": 7
 }

@@ -3,6 +3,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/common/Button.astro";
 import CTA from "../components/common/CTA.astro";
 import { company, digitalEthiopia, leadership, mission, org, story, teamGroups, timeline, values, vision } from "../data/company";
+
+function personName(name: string) {
+  const nick = name.match(/\(([^)]+)\)$/);
+  if (!nick || nick.index === undefined) return { given: name, nick: "" };
+  return { given: name.slice(0, nick.index).trim(), nick: `(${nick[1]})` };
+}
+
+function showRole(role: string) {
+  return role !== "Video editor" && role !== "Social media manager and host";
+}
 ---
 
 <BaseLayout
@@ -23,16 +33,18 @@ import { company, digitalEthiopia, leadership, mission, org, story, teamGroups, 
   <section class="section-tint">
     <div class="container">
       <h2>Our story</h2>
-      <div class="prose" style="max-width: 46rem; margin-top: 12px;">
-        {story.map((paragraph) => <p>{paragraph}</p>)}
-      </div>
-      <div class="timeline" style="margin-top: 28px;">
-        {timeline.map((item) => (
-          <article class="card">
-            <p class="eyebrow">{item.year}</p>
-            <p>{item.text}</p>
-          </article>
-        ))}
+      <div class="story-layout">
+        <div class="prose">
+          {story.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <div class="timeline">
+          {timeline.map((item) => (
+            <article>
+              <p class="story-year">{item.year}</p>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -69,7 +81,7 @@ import { company, digitalEthiopia, leadership, mission, org, story, teamGroups, 
             )}
             <div>
               <h3>{person.name}</h3>
-              <p>{person.role}</p>
+              <p class="leader-role">{person.role}</p>
               <p>{person.bio}</p>
             </div>
           </article>
@@ -94,18 +106,25 @@ import { company, digitalEthiopia, leadership, mission, org, story, teamGroups, 
           teamGroups.map((group) => (
             <div>
               <h3>{group.wing}</h3>
-              <div class="role-grid">
-                {group.people.map((person) => (
-                  <article class:list={["role-card", { "role-card-full": "frame" in person && person.frame === "full" }]}>
-                    {person.image ? (
-                      <img src={person.image} alt={person.name} width="289" height="481" />
-                    ) : (
-                      <div class="role-photo" aria-hidden="true" />
-                    )}
-                    <strong>{person.name}</strong>
-                    <p>{person.role}</p>
-                  </article>
-                ))}
+              <div
+                class:list={[
+                  "role-grid",
+                  { "cols-3": group.people.length === 3, "cols-1": group.people.length === 1 },
+                ]}
+              >
+                {group.people.map((person) => {
+                  const { given, nick } = personName(person.name);
+                  return (
+                    <article class="role-card">
+                      {person.image && <img src={person.image} alt={person.name} width="480" height="600" />}
+                      <strong>
+                        <span class="person-name">{given}</span>
+                        {nick && <>{" "}<span class="person-nick">{nick}</span></>}
+                      </strong>
+                      {showRole(person.role) && <p>{person.role}</p>}
+                    </article>
+                  );
+                })}
               </div>
             </div>
           ))
@@ -154,7 +173,7 @@ import { company, digitalEthiopia, leadership, mission, org, story, teamGroups, 
           <li>Established {company.established}</li>
         </ul>
         <div style="margin-top: 18px;">
-          <Button href={company.profilePdf} variant="secondary" track="profile-download">Download company profile</Button>
+          <Button href={company.profilePdf} variant="secondary" track="profile-download" external>Download company profile</Button>
         </div>
       </div>
       <article class="card">

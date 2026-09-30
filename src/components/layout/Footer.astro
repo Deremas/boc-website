@@ -46,7 +46,7 @@ function iconName(name: string) {
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
         <li><a href="/privacy">Privacy</a></li>
-        <li><a href={company.profilePdf} data-track="profile-download">Company profile</a></li>
+        <li><a class="profile-link" href={company.profilePdf} data-track="profile-download" target="_blank" rel="noopener noreferrer"><Icon name="download" />Company profile</a></li>
       </ul>
     </div>
     <div class="footer-contact">

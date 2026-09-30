@@ -15,7 +15,6 @@ function iconName(name: string) {
 
 const interest = Astro.url.searchParams.get("interest") ?? "";
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-const map = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapQuery)}&z=15&output=embed`;
 ---
 
 <BaseLayout
@@ -63,7 +62,8 @@ const map = `https://maps.google.com/maps?q=${encodeURIComponent(company.mapQuer
             ))}
           </div>
         </div>
-        <iframe class="map-frame" style="margin-top: 16px;" title="Blue Ocean Creatives office map" src={map} loading="lazy"></iframe>
+        <iframe class="map-frame" style="margin-top: 16px;" title="Blue Ocean Creatives office map" src={company.mapEmbed} loading="lazy"></iframe>
+        <a class="text-link" href={company.mapUrl} target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top:10px;">Open in Google Maps</a>
       </aside>
     </div>
   </section>

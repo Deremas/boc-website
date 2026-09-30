@@ -1,9 +1,9 @@
 ---
-title: "Lavish Medical Spa"
+title: "Lavish Medical Spa (3 cities)"
 category: "digital-marketing"
 sector: "Healthcare"
 location: "Addis Ababa, Dire Dawa and Adama"
-headlineResult: "13M TikTok views and 4.2M Meta views in 12 months"
+headlineResult: "13M TikTok views and 4.2M Meta views in 12 months (Addis Ababa)"
 heroImage: "/logos/clients/lavish.jpg"
 services:
   - Social media management

@@ -3,27 +3,38 @@ interface Props {
   href: string;
   title: string;
   sector: string;
-  category: string;
+  category: string | readonly string[];
   headlineResult: string;
   image?: string;
 }
 
 const { href, title, sector, category, headlineResult, image } = Astro.props;
+const categories = Array.isArray(category) ? category : [category];
+const external = href.startsWith("http");
+const logo = image?.startsWith("/logos/");
 ---
 
-<a class="card work-card" href={href} data-work-card data-category={category} data-track="case-study">
+<a
+  class="card work-card"
+  href={href}
+  data-work-card
+  data-category={categories.join(" ")}
+  data-track="case-study"
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+>
   {
     image ? (
-      <img src={image} alt={title} loading="lazy" />
+      <img class:list={[{ "work-card-logo": logo }]} src={image} alt="" loading="lazy" />
     ) : (
-      <div class="product-frame" style="border-radius:0;">
-        <strong style="font-size:2rem;">{headlineResult}</strong>
+      <div class="work-card-panel">
+        <strong>{title}</strong>
       </div>
     )
   }
-  <div>
+  <div class="work-card-body">
+    {image && <h3>{title}</h3>}
     <p class="eyebrow">{sector}</p>
-    <h3>{title}</h3>
-    <strong>{headlineResult}</strong>
+    <p class="work-result">{headlineResult}</p>
   </div>
 </a>

@@ -1,21 +1,67 @@
 ---
-interface Props {
-  clients: { name: string; logo?: string }[];
+interface Client {
+  name: string;
+  logo?: string;
+  color?: boolean;
+  website?: string;
 }
 
-const { clients } = Astro.props;
+interface Props {
+  clients: Client[];
+  marquee?: boolean;
+}
+
+const { clients, marquee = false } = Astro.props;
 ---
 
-<div class="logo-wall">
-  {
-    clients.map((client) => (
-      <div class="logo-tile">
-        {client.logo ? (
+{
+  marquee ? (
+    <div class="logo-marquee">
+      <div class="logo-marquee-track">
+        {[false, true].map((clone) => (
+          <div class="logo-marquee-set" aria-hidden={clone ? "true" : undefined}>
+            {clients.map((client) => {
+              const tile = client.logo ? (
+                <img src={client.logo} alt={clone ? "" : `${client.name} logo`} loading="lazy" />
+              ) : (
+                <span>{client.name}</span>
+              );
+              const className = ["logo-tile", client.color && "logo-color"];
+              return client.website ? (
+                <a
+                  class:list={className}
+                  href={client.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabindex={clone ? -1 : undefined}
+                >
+                  {tile}
+                </a>
+              ) : (
+                <div class:list={className}>{tile}</div>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <div class="logo-wall">
+      {clients.map((client) => {
+        const tile = client.logo ? (
           <img src={client.logo} alt={`${client.name} logo`} loading="lazy" />
         ) : (
           <span>{client.name}</span>
-        )}
-      </div>
-    ))
-  }
-</div>
+        );
+        const className = ["logo-tile", client.color && "logo-color"];
+        return client.website ? (
+          <a class:list={className} href={client.website} target="_blank" rel="noopener noreferrer">
+            {tile}
+          </a>
+        ) : (
+          <div class:list={className}>{tile}</div>
+        );
+      })}
+    </div>
+  )
+}

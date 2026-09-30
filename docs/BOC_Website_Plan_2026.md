@@ -217,7 +217,7 @@ Short text plus language chips (Amharic · Afaan Oromoo · Somali · Tigrigna ·
 
 #### Section 7 — Health-sector experience
 
-“Health communication must be accurate, culturally appropriate and approved before it goes live.” Logos: Lavish Medical Spa, Fikreselam General Hospital, Harme Medical Center, Union Specialty Dental Clinic, Radiant Health Club.
+“Health communication must be accurate, culturally appropriate and approved before it goes live.” Logos: Lavish Medical Spa, Fikreselam General Hospital, Harme Medical Center, Viola Brows & Beauty, Bole Pharmacy, Union Specialty Dental Clinic, Radiant Health Club.
 
 #### Section 8 — Creative showcase
 
@@ -272,7 +272,7 @@ Stats row: **329** features · **21** modules · **56** standard reports · **23
 
 | Card | Text |
 |---|---|
-| Odoo implementation | For clients who prefer an international platform — configuration, custom modules, migration and training. Nova Water and Nokdes Trading run on Odoo systems we delivered. |
+| Odoo implementation | For clients who prefer an international platform — configuration, custom modules, migration and training. Nokdes Trading runs on an Odoo system we delivered. |
 | Stock and financial management | Live stock, sales and branch control for shops, wholesalers and supermarkets. 100+ businesses, 96 branches. |
 | Industry systems | Restaurants and cafés, bakeries, supermarkets, EV charging stations, import and distribution, job shops. |
 | Custom software, web and mobile | Operational systems, portals, mobile apps and websites built around your process. |
@@ -282,7 +282,7 @@ Stats row: **329** features · **21** modules · **56** standard reports · **23
 | Client | System delivered | Reference |
 |---|---|---|
 | Konel Natural Purified Water, Dire Dawa | Blue Ocean ERP for a 24-hour, three-shift bottling plant | Feb 2026 |
-| Nova Water (Melayan Manufacturing), Sebeta | Odoo ERP for manufacturing, procurement and quality, in three months | Nov 2025 |
+| Nova Water (Melayan Manufacturing), Sebeta | Blue Ocean ERP for manufacturing, procurement and quality, in three months | Nov 2025 |
 | Wow Energy Services (Smart Gas) | Customised ERP for LPG distribution | Feb 2026 |
 | Vector Advertising & Manufacturing | Full-scale ERP for a job-order manufacturer | Feb 2026 |
 | Apex Financial Solutions | ERP plus the Apex Tax School training platform | 2026 |
@@ -365,7 +365,7 @@ Wow Energy, Vector, Melayan (Nova Water) and Konel (translated) quotes from sect
 | Peniel Training Institute | 8.3M Meta views · 18.7K link clicks | Profile §11 and reference letter |
 | Apex Financial Solutions | 3.4M Meta views · 11.2K new follows · high-quality leads | Profile §11 and reference letter |
 | Konel Natural Purified Water | Blue Ocean ERP in a 24-hour, three-shift plant | Profile §11 and reference letter |
-| Nova Water (Melayan) | Odoo ERP delivered in three months, in daily use | Profile §11 and certificate |
+| Nova Water (Melayan) | Blue Ocean ERP delivered in three months, in daily use | Profile §11 and certificate |
 | Wow Energy (Smart Gas) | Customised ERP for LPG distribution | Profile §11 and reference letter |
 
 ### 4.6 About

@@ -5,10 +5,12 @@ interface Props {
   location: string;
   services: string[];
   image?: string;
+  website?: string;
   headline: string;
 }
 
-const { title, sector, location, services, image, headline } = Astro.props;
+const { title, sector, location, services, image, website, headline } = Astro.props;
+const siteLabel = website?.replace(/^https?:\/\//, "").replace(/\/$/, "");
 ---
 
 <div class="container hero">
@@ -19,10 +21,25 @@ const { title, sector, location, services, image, headline } = Astro.props;
     <div class="chips">
       {services.map((service) => <span class="chip">{service}</span>)}
     </div>
+    {
+      website && siteLabel && (
+        <p class="hero-site">
+          <a class="text-link" href={website} target="_blank" rel="noopener noreferrer">
+            {siteLabel}
+          </a>
+        </p>
+      )
+    }
   </div>
   {
     image && (
-      <img class="frame-photo" src={image} alt={title} width="960" height="640" />
+      <img
+        class:list={["frame-photo", { "hero-logo": image.startsWith("/logos/") }]}
+        src={image}
+        alt={title}
+        width="960"
+        height="640"
+      />
     )
   }
 </div>

@@ -1,9 +1,10 @@
 ---
-title: "Wow Energy"
+title: "Wow Energy (Smart Gas)"
 category: "business-systems"
 sector: "LPG distribution"
 location: "Addis Ababa"
 headlineResult: "Customised ERP for LPG distribution"
+heroImage: "/images/systems/wow-energy.png"
 services:
   - Custom ERP
   - LPG distribution
