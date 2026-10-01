@@ -109,19 +109,19 @@ export const leadership = [
   {
     name: "Dawit Lake Netere",
     role: "Co-Founder & CEO",
-    image: "/images/team/profile-1.png",
+    image: "/images/team/profile-1.webp",
     bio: "Sets strategy, partnerships and growth from Warsaw. Previously a ServiceNow consultant at Deloitte Central Europe, he co-founded and exited LearnGo and co-owned BrewBar Coffee in Poland.",
   },
   {
     name: "Befekadu Feleke",
     role: "Co-Founder, General Manager & COO",
-    image: "/images/team/090.jpg",
+    image: "/images/team/090.webp",
     bio: "Runs operations, client delivery and commercial work from Addis Ababa, leading 23+ staff in three cities. He co-founded Chekela and teaches paid ad management on its social media course.",
   },
   {
     name: "Michal Cal",
     role: "CFO",
-    image: "/images/team/michal-cal.jpg",
+    image: "/images/team/michal-cal.webp",
     bio: "Leads financial strategy, planning and financial controls, and supports the leadership team on business planning, growth and partnerships.",
   },
   {
@@ -151,17 +151,17 @@ export const teamGroups = [
       {
         name: "Yonas Mano",
         role: "Video Editor",
-        image: "/images/team/yonas-mano.png",
+        image: "/images/team/yonas-mano.webp",
       },
       {
         name: "Eskinder Tamrat",
         role: "Video Editor",
-        image: "/images/team/eskinder-tamrat.png",
+        image: "/images/team/eskinder-tamrat.webp",
       },
       {
         name: "Tsinfeadam Hailu",
         role: "Video Editor",
-        image: "/images/team/tsinfeadam-hailu.png",
+        image: "/images/team/tsinfeadam-hailu.webp",
       },
     ],
   },
@@ -171,12 +171,12 @@ export const teamGroups = [
       {
         name: "Yeabkal Abera (Koki)",
         role: "Social Media Manager and Host",
-        image: "/images/team/yeabkal-abera-2.png",
+        image: "/images/team/yeabkal-abera-2.webp",
       },
       {
         name: "Yeabsira Tesfaye (Maya)",
         role: "Social Media Manager and Host",
-        image: "/images/team/yeabsira-tesfaye-2.png",
+        image: "/images/team/yeabsira-tesfaye-2.webp",
       },
       {
         name: "Yeabsira Terefe",
@@ -196,7 +196,7 @@ export const teamGroups = [
       {
         name: "Rebira Abraham",
         role: "Cinematographer and Video Editor",
-        image: "/images/team/rebira-abraham-3.png",
+        image: "/images/team/rebira-abraham-3.webp",
         frame: "full",
       },
     ],
@@ -207,7 +207,7 @@ export const teamGroups = [
       {
         name: "Dereje Masresha",
         role: "Full-stack ERP Developer",
-        image: "/images/team/dereje-masresha-2.png",
+        image: "/images/team/dereje-masresha-2.webp",
       },
     ],
   },

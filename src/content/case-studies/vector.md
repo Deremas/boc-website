@@ -6,7 +6,7 @@ category:
 sector: "Advertising and manufacturing"
 location: "Addis Ababa"
 headlineResult: "Full-scale ERP for a job-order manufacturer"
-heroImage: "/logos/clients/vector.png"
+heroImage: "/logos/clients/vector.webp"
 website: "https://vector4.app/"
 services:
   - Full-scale ERP

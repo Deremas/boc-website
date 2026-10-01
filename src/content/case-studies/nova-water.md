@@ -4,7 +4,7 @@ category: "business-systems"
 sector: "Manufacturing"
 location: "Sebeta"
 headlineResult: "Blue Ocean ERP delivered in three months, in daily use"
-heroImage: "/images/systems/nova-water.png"
+heroImage: "/images/systems/nova-water.webp"
 services:
   - Blue Ocean ERP
   - Manufacturing

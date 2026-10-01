@@ -3,7 +3,7 @@ title: "Pharmacy stock system"
 category: "business-systems"
 sector: "Pharmacy"
 headlineResult: "Stock and daily operations"
-heroImage: "/images/systems/bole-pharmacy.png"
+heroImage: "/images/systems/bole-pharmacy.webp"
 services:
   - Stock management
   - Daily operations

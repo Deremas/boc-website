@@ -4,7 +4,7 @@ category: "digital-marketing"
 sector: "Education"
 location: "Addis Ababa"
 headlineResult: "8.3M Meta views · 18.7K link clicks"
-heroImage: "/logos/clients/peniel.jpg"
+heroImage: "/logos/clients/peniel.webp"
 services:
   - Social media management
   - Facebook & Instagram

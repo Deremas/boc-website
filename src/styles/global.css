@@ -442,8 +442,9 @@ section {
 }
 
 .hero-visual.hero-mark img {
-  aspect-ratio: auto;
+  aspect-ratio: 1024 / 819;
   object-fit: contain;
+  height: auto;
 }
 
 .proof-badge {
@@ -1025,6 +1026,10 @@ a.card:hover {
   height: 40px;
   border: 0;
   border-radius: 999px;
+  color: white;
+}
+
+.social-row a:hover {
   color: white;
 }
 

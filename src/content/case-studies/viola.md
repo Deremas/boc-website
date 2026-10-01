@@ -6,7 +6,7 @@ category:
 sector: "Beauty"
 location: "Addis Ababa"
 headlineResult: "Online booking with advance payment review"
-heroImage: "/logos/clients/viola.png"
+heroImage: "/logos/clients/viola.webp"
 services:
   - Digital marketing
   - Online booking

@@ -4,7 +4,7 @@ category: "business-systems"
 sector: "Bottled water"
 location: "Dire Dawa"
 headlineResult: "Blue Ocean ERP in a 24-hour, three-shift plant"
-heroImage: "/images/systems/konel.png"
+heroImage: "/images/systems/konel.webp"
 services:
   - Blue Ocean ERP
 since: "Mid-2025"

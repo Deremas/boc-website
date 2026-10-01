@@ -6,7 +6,7 @@ category:
 sector: "Financial services"
 location: "Addis Ababa"
 headlineResult: "3.4M Meta views · 11.2K new follows · high-quality leads"
-heroImage: "/images/systems/apex-tax-school.png"
+heroImage: "/images/systems/apex-tax-school.webp"
 website: "https://apextaxschool.com/"
 services:
   - Paid advertising

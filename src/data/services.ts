@@ -66,26 +66,26 @@ export const languageExamples = [
 ] as const;
 
 export const healthClients = [
-  { name: "Lavish Medical Spa", logo: "/logos/clients/lavish.jpg" },
-  { name: "Fikreselam General Hospital", logo: "/logos/clients/fikreselam.png" },
-  { name: "Harme Medical Center", logo: "/logos/clients/harme.jpg" },
-  { name: "Viola Brows & Beauty", logo: "/logos/clients/viola.png" },
+  { name: "Lavish Medical Spa", logo: "/logos/clients/lavish.webp" },
+  { name: "Fikreselam General Hospital", logo: "/logos/clients/fikreselam.webp" },
+  { name: "Harme Medical Center", logo: "/logos/clients/harme.webp" },
+  { name: "Viola Brows & Beauty", logo: "/logos/clients/viola.webp" },
 ] as const;
 
 export const showcase = [
   {
     title: "Lavish Medical Spa",
-    image: "/logos/clients/lavish.jpg",
+    image: "/logos/clients/lavish.webp",
     href: "/work/lavish-medical-spa",
   },
   {
     title: "Peniel Training Institute",
-    image: "/logos/clients/peniel.jpg",
+    image: "/logos/clients/peniel.webp",
     href: "/work/peniel",
   },
   {
     title: "Apex Financial Solutions",
-    image: "/logos/clients/apex.jpg",
+    image: "/logos/clients/apex.webp",
     href: "/work/apex",
   },
 ] as const;
