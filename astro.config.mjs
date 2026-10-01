@@ -2,10 +2,10 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import cloudflare from "@astrojs/cloudflare";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 
+/** @type {Record<string, string>} */
 const oldRoutes = {
   "/services": "/digital-marketing",
   "/services/": "/digital-marketing",
@@ -18,10 +18,16 @@ const oldRoutes = {
 function oldSiteRedirects() {
   return {
     name: "old-site-redirects",
+    /** @param {import("vite").ViteDevServer} server */
     configureServer(server) {
       return () => {
         server.middlewares.stack.unshift({
           route: "",
+          /**
+           * @param {import("vite").Connect.IncomingMessage} req
+           * @param {import("node:http").ServerResponse} res
+           * @param {import("vite").Connect.NextFunction} next
+           */
           handle(req, res, next) {
             const path = req.url?.split("?")[0];
             const destination = path ? oldRoutes[path] : undefined;
@@ -40,7 +46,7 @@ export default defineConfig({
   site: "https://blueoceancreatives.com",
   output: "static",
   session: false,
-  adapter: process.env.VERCEL ? vercel() : cloudflare({ imageService: "passthrough" }),
+  adapter: vercel(),
   trailingSlash: "never",
   integrations: [react(), sitemap()],
   vite: {

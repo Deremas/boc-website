@@ -127,7 +127,7 @@ export const leadership = [
   {
     name: "Nathnael Zerihun",
     role: "Creative Director / Head of Social Media Wing",
-    image: "",
+    image: "/images/team/nathnael-zerihun.webp",
     bio: "Leads the social media wing and sets creative direction for health, hospitality and education accounts, including Lavish Medical Spa, Peniel, Liesak Resorts and Fikreselam General Hospital.",
   },
 ] as const;
