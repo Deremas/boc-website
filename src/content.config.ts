@@ -50,3 +50,5 @@ const clients = defineCollection({
 });
 
 export const collections = { caseStudies, testimonials, clients };
+
+
