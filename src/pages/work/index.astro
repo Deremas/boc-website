@@ -26,6 +26,8 @@ const clients = (await getCollection("clients"))
   .map((entry) => entry.data)
   .filter((client) => !caseStudyClients.has(client.name))
   .sort((a, b) => a.order - b.order);
+const featured = studies.slice(0, 6);
+const more = studies.slice(6);
 ---
 
 <BaseLayout
@@ -39,7 +41,7 @@ const clients = (await getCollection("clients"))
       <WorkFilter client:load />
       <div class="work-grid">
         {
-          studies.map((study) => (
+          featured.map((study) => (
             <WorkCard
               href={`/work/${study.id}`}
               title={study.data.title}
@@ -51,9 +53,34 @@ const clients = (await getCollection("clients"))
           ))
         }
       </div>
-      <h2 style="margin-top: 48px;">Other clients</h2>
+      {
+        more.length > 0 && (
+          <>
+            <h2 class="work-more-heading">More work</h2>
+            <div class="work-grid">
+              {more.map((study) => (
+                <WorkCard
+                  href={`/work/${study.id}`}
+                  title={study.data.title}
+                  sector={study.data.sector}
+                  category={study.data.category}
+                  headlineResult={study.data.headlineResult}
+                  image={study.data.heroImage}
+                />
+              ))}
+            </div>
+          </>
+        )
+      }
+      <h2 class="work-more-heading">Other clients</h2>
       <LogoWall clients={clients} />
     </div>
   </section>
   <CTA />
 </BaseLayout>
+
+<style>
+  .work-more-heading {
+    margin-top: 48px;
+  }
+</style>

@@ -257,12 +257,30 @@ export const faqs = [
 ] as const;
 
 export const chekelaFeatures = [
-  "Grade 9–12 lessons, quizzes and exams",
-  "Matriculation revision with past national exam questions",
-  "Professional courses (web and mobile development, digital marketing)",
-  "AI tutor in English, Amharic, Afaan Oromoo, Tigrigna and Somali",
-  "Exams generated from photos",
-  "Planner, communities, offline videos and leaderboard",
+  {
+    icon: "book",
+    text: "Grade 9–12 lessons, quizzes and exams",
+  },
+  {
+    icon: "exam",
+    text: "Matriculation revision with past national exam questions",
+  },
+  {
+    icon: "course",
+    text: "Professional courses (web and mobile development, digital marketing)",
+  },
+  {
+    icon: "tutor",
+    text: "AI tutor in English, Amharic, Afaan Oromoo, Tigrigna and Somali",
+  },
+  {
+    icon: "camera",
+    text: "Exams generated from photos",
+  },
+  {
+    icon: "planner",
+    text: "Planner, communities, offline videos and leaderboard",
+  },
 ] as const;
 
 export const chekelaStats = [

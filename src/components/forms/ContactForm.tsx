@@ -67,53 +67,61 @@ export default function ContactForm({
   }
 
   return (
-    <form className="form" onSubmit={onSubmit} noValidate>
-      <label>
-        Name *
-        <input name="name" autoComplete="name" required maxLength={120} />
-      </label>
-      <label>
-        Company *
-        <input name="company" autoComplete="organization" required maxLength={160} />
-      </label>
-      <label>
-        Phone *
-        <input name="phone" type="tel" autoComplete="tel" required maxLength={40} />
-      </label>
-      <label>
-        Email
-        <input name="email" type="email" autoComplete="email" maxLength={160} />
-      </label>
-      <label>
-        I’m interested in *
-        <select name="interest" required defaultValue={interest}>
-          <option value="">Select one</option>
-          {interestOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Preferred contact
-        <select name="preferredContact" defaultValue="">
-          <option value="">No preference</option>
-          {contactPreferences.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-        Message
-        <textarea name="message" maxLength={2000} />
-      </label>
-      <label className="hp" aria-hidden="true">
-        Website
-        <input name="website" tabIndex={-1} autoComplete="off" />
-      </label>
+    <form className="form" onSubmit={onSubmit}>
+      <fieldset className="form-group">
+        <legend>About you</legend>
+        <label>
+          Name *
+          <input name="name" autoComplete="name" required maxLength={120} />
+        </label>
+        <label>
+          Company *
+          <input name="company" autoComplete="organization" required maxLength={160} />
+        </label>
+        <label>
+          Phone *
+          <input name="phone" type="tel" autoComplete="tel" required maxLength={40} />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" autoComplete="email" maxLength={160} />
+        </label>
+      </fieldset>
+      <fieldset className="form-group">
+        <legend>What you need</legend>
+        <label>
+          I’m interested in *
+          <select name="interest" required defaultValue={interest}>
+            <option value="">Select one</option>
+            {interestOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Preferred contact
+          <select name="preferredContact" defaultValue="">
+            <option value="">No preference</option>
+            {contactPreferences.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Message
+          <textarea name="message" maxLength={2000} />
+        </label>
+      </fieldset>
+      <div className="hp" aria-hidden="true">
+        <label>
+          Website
+          <input name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
       {siteKey && <div className="cf-turnstile" data-sitekey={siteKey} />}
       {status.message && (
         <p className={status.type === "success" ? "form-success" : "form-error"} role="status">

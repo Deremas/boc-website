@@ -101,35 +101,38 @@ function showRole(role: string) {
           {org.wings.map((wing) => <span>{wing}</span>)}
         </div>
       </div>
-      <div class="team-groups">
-        {
-          teamGroups.map((group) => (
-            <div>
-              <h3>{group.wing}</h3>
-              <div
-                class:list={[
-                  "role-grid",
-                  { "cols-3": group.people.length === 3, "cols-1": group.people.length === 1 },
-                ]}
-              >
-                {group.people.map((person) => {
-                  const { given, nick } = personName(person.name);
-                  return (
-                    <article class="role-card">
-                      {person.image && <img src={person.image} alt={person.name} width="480" height="600" />}
-                      <strong>
-                        <span class="person-name">{given}</span>
-                        {nick && <>{" "}<span class="person-nick">{nick}</span></>}
-                      </strong>
-                      {showRole(person.role) && <p>{person.role}</p>}
-                    </article>
-                  );
-                })}
+      <details class="disclose">
+        <summary>Teams by wing</summary>
+        <div class="team-groups">
+          {
+            teamGroups.map((group) => (
+              <div>
+                <h3>{group.wing}</h3>
+                <div
+                  class:list={[
+                    "role-grid",
+                    { "cols-3": group.people.length === 3, "cols-1": group.people.length === 1 },
+                  ]}
+                >
+                  {group.people.map((person) => {
+                    const { given, nick } = personName(person.name);
+                    return (
+                      <article class="role-card">
+                        {person.image && <img src={person.image} alt={person.name} width="480" height="600" />}
+                        <strong>
+                          <span class="person-name">{given}</span>
+                          {nick && <>{" "}<span class="person-nick">{nick}</span></>}
+                        </strong>
+                        {showRole(person.role) && <p>{person.role}</p>}
+                      </article>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))
-        }
-      </div>
+            ))
+          }
+        </div>
+      </details>
     </div>
   </section>
   <section class="section-tint">

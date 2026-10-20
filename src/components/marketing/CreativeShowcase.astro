@@ -6,10 +6,10 @@ import { showcase } from "../../data/services";
 <section>
   <div class="container">
     <SectionHeading title="From the studio and the field." />
-    <div class="work-grid logo-pair">
+    <div class="card-strip showcase-strip" role="list">
       {
         showcase.map((item) => (
-          <a class="card work-card showcase-card" href={item.href}>
+          <a class="card work-card showcase-card" href={item.href} role="listitem">
             <div class="showcase-visual">
               <img src={item.image} alt="" loading="lazy" />
             </div>
@@ -23,3 +23,8 @@ import { showcase } from "../../data/services";
   </div>
 </section>
 
+<style>
+  .showcase-strip {
+    --strip-cols: 3;
+  }
+</style>

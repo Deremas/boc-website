@@ -8,6 +8,7 @@ import SystemsCards from "../components/systems/SystemsCards.astro";
 import ImplementationSteps from "../components/systems/ImplementationSteps.astro";
 import FAQ from "../components/systems/FAQ.astro";
 import CTA from "../components/common/CTA.astro";
+import Icon from "../components/common/Icon.astro";
 import SectionHeading from "../components/common/SectionHeading.astro";
 import TestimonialCarousel from "../components/home/TestimonialCarousel";
 import { erpDifferences, erpModules, systemProjects } from "../data/services";
@@ -38,10 +39,12 @@ const quotes = (await getCollection("testimonials"))
   </section>
   <section class="section-tint">
     <div class="container">
-      <SectionHeading title="What makes it different." />
-      <ul class="service-grid" style="list-style:none; padding:0; margin:0;">
-        {erpDifferences.map((item) => <li class="card"><p>{item}</p></li>)}
-      </ul>
+      <details class="disclose disclose-panel">
+        <summary>What makes it different</summary>
+        <ul class="service-grid disclose-body" style="list-style:none; padding:0; margin:0;">
+          {erpDifferences.map((item) => <li class="card"><p>{item}</p></li>)}
+        </ul>
+      </details>
     </div>
   </section>
   <SystemsCards />
@@ -66,8 +69,8 @@ const quotes = (await getCollection("testimonials"))
                       project.href ? (
                         <a href={project.href}>{project.client}</a>
                       ) : "website" in project && project.website ? (
-                        <a href={project.website} target="_blank" rel="noopener noreferrer">
-                          {project.client}
+                        <a class="text-link-external" href={project.website} target="_blank" rel="noopener noreferrer">
+                          {project.client}<Icon name="external" />
                         </a>
                       ) : (
                         project.client
@@ -95,8 +98,8 @@ const quotes = (await getCollection("testimonials"))
                 </a>
               )}
               {"website" in project && project.website && (
-                <a class="text-link" href={project.website} target="_blank" rel="noopener noreferrer">
-                  {project.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                <a class="text-link text-link-external" href={project.website} target="_blank" rel="noopener noreferrer">
+                  {project.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}<Icon name="external" />
                 </a>
               )}
             </article>

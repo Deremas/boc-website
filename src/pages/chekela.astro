@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/common/Button.astro";
 import CTA from "../components/common/CTA.astro";
+import Icon from "../components/common/Icon.astro";
 import { company } from "../data/company";
 import { chekelaFeatures, chekelaStats } from "../data/services";
 ---
@@ -12,16 +13,24 @@ import { chekelaFeatures, chekelaStats } from "../data/services";
 >
   <div class="container hero">
     <div>
-      <p class="eyebrow">Chekela</p>
+      <p class="eyebrow">Product · Blue Ocean Creatives</p>
       <h1>Learning built for Ethiopian students.</h1>
       <p class="lede">
         Chekela brings teacher-prepared lessons, exams and professional courses to any phone — with an AI tutor that speaks your language.
       </p>
       <div class="btn-row">
         <Button href={company.chekelaUrl} track="chekela" external>Visit chkela.com</Button>
-        <Button href={company.chekelaPlayUrl} variant="secondary" track="chekela" external>Google Play</Button>
-        <Button href={company.chekelaAppStoreUrl} variant="secondary" track="chekela" external>App Store</Button>
       </div>
+      <p class="hero-stores">
+        Get the app:
+        <a class="text-link text-link-external" href={company.chekelaPlayUrl} data-track="chekela" target="_blank" rel="noopener noreferrer"
+          >Google Play<Icon name="external" /></a
+        >
+        <span aria-hidden="true"> · </span>
+        <a class="text-link text-link-external" href={company.chekelaAppStoreUrl} data-track="chekela" target="_blank" rel="noopener noreferrer"
+          >App Store<Icon name="external" /></a
+        >
+      </p>
     </div>
     <div class="product-frame">
       <p class="eyebrow">On the phone</p>
@@ -43,7 +52,16 @@ import { chekelaFeatures, chekelaStats } from "../data/services";
     <div class="container">
       <h2>What students use.</h2>
       <div class="feature-grid" style="margin-top: 20px;">
-        {chekelaFeatures.map((feature) => <article class="card"><h3>{feature}</h3></article>)}
+        {
+          chekelaFeatures.map((feature) => (
+            <article class="card feature-card">
+              <span class="feature-icon">
+                <Icon name={feature.icon} />
+              </span>
+              <h3>{feature.text}</h3>
+            </article>
+          ))
+        }
       </div>
       <div class="card" style="margin-top: 18px;">
         <h3>Recognition</h3>
@@ -66,3 +84,40 @@ import { chekelaFeatures, chekelaStats } from "../data/services";
     secondaryTrack="proposal"
   />
 </BaseLayout>
+
+<style>
+  .hero-stores {
+    margin: 14px 0 0;
+    color: var(--color-muted);
+    font-size: 15px;
+  }
+
+  .hero-stores .text-link {
+    margin-inline: 4px;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .feature-card h3 {
+    margin: 0;
+  }
+
+  .feature-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--color-light);
+    color: var(--color-sky);
+  }
+
+  .feature-icon :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+</style>

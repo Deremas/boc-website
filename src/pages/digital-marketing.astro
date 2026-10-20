@@ -69,10 +69,10 @@ const quotes = (await getCollection("testimonials"))
         title="Health-sector experience."
         text="Health communication must be accurate, culturally appropriate and approved before it goes live."
       />
-      <div class="result-grid logo-pair">
+      <div class="card-strip health-strip" role="list">
         {
           healthClients.map((client) => (
-            <article class="card health-client">
+            <article class="card health-client" role="listitem">
               {"logo" in client && <img src={client.logo} alt="" />}
               <h3>{client.name}</h3>
             </article>
@@ -85,7 +85,7 @@ const quotes = (await getCollection("testimonials"))
   <section class="section-tint">
     <div class="container">
       <SectionHeading title="From the reference letters." />
-      <TestimonialCarousel client:visible items={quotes} interval={3000} />
+      <TestimonialCarousel client:visible items={quotes} interval={5000} />
     </div>
   </section>
   <CTA
@@ -117,21 +117,27 @@ const quotes = (await getCollection("testimonials"))
     color: var(--color-navy);
   }
 
+  .health-strip {
+    --strip-cols: 4;
+  }
+
   .health-client {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: 14px;
+    min-height: 100%;
   }
 
   .health-client img {
     width: 100%;
-    height: 96px;
+    height: 88px;
     object-fit: contain;
   }
 
   .health-client h3 {
     margin: 0;
+    font-size: 1rem;
   }
 
   a.health-client {

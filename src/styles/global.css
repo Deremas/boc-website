@@ -249,6 +249,24 @@ section {
   color: var(--color-blue);
 }
 
+.external-mark {
+  display: block;
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+}
+
+.text-link-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.feature-mark {
+  color: inherit;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -680,7 +698,7 @@ a.card:hover {
 .logo-marquee-track {
   display: flex;
   width: max-content;
-  animation: logo-drift 40s linear infinite;
+  animation: logo-drift 70s linear infinite;
 }
 
 .logo-marquee-set {
@@ -698,6 +716,17 @@ a.card:hover {
 .logo-marquee:active .logo-marquee-track,
 .logo-marquee:focus-within .logo-marquee-track {
   animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logo-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .logo-marquee:hover .logo-marquee-track,
+  .logo-marquee:focus-within .logo-marquee-track {
+    animation-play-state: running;
+  }
 }
 
 @keyframes logo-drift {
@@ -1022,8 +1051,8 @@ a.card:hover {
 .social-row a {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: 0;
   border-radius: 999px;
   color: white;
@@ -1114,7 +1143,7 @@ a.card:hover {
 }
 
 .tabs button {
-  min-height: 42px;
+  min-height: 44px;
   padding: 0 16px;
   border: 1px solid var(--color-line);
   border-radius: 999px;
@@ -1222,7 +1251,25 @@ a.card:hover {
 
 .form {
   display: grid;
+  gap: 18px;
+}
+
+.form-group {
+  display: grid;
   gap: 14px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.form-group legend {
+  margin-bottom: 2px;
+  color: var(--color-navy);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .form label {
@@ -1265,8 +1312,46 @@ a.card:hover {
 }
 
 .hp {
-  position: absolute;
-  left: -9999px;
+  display: none;
+}
+
+.disclose {
+  margin-top: 28px;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background: white;
+}
+
+.disclose > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 18px;
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.disclose > summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclose > summary::after {
+  content: "+";
+  float: right;
+  color: var(--color-blue);
+  font-weight: 700;
+}
+
+.disclose[open] > summary::after {
+  content: "–";
+}
+
+.disclose .team-groups,
+.disclose .disclose-body {
+  padding: 0 18px 18px;
+}
+
+.disclose-panel {
+  margin-top: 0;
 }
 
 .two-col,
@@ -1524,7 +1609,7 @@ a.card:hover {
 }
 
 .filter-row .btn {
-  min-height: 40px;
+  min-height: 44px;
   padding-inline: 16px;
   font-size: 14px;
 }
@@ -1565,6 +1650,40 @@ a.card:hover {
   padding: 28px 24px;
   box-sizing: border-box;
   background: white;
+}
+
+.card-strip {
+  display: grid;
+  grid-template-columns: repeat(var(--strip-cols, 4), minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.card-strip > * {
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .card-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .card-strip > * {
+    flex: 0 0 min(72%, 240px);
+    scroll-snap-align: start;
+  }
+
+  .showcase-strip > * {
+    flex-basis: min(78%, 260px);
+  }
 }
 
 .showcase-card .showcase-visual {
