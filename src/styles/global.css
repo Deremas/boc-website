@@ -189,11 +189,12 @@ section {
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-}
-
-.btn:hover {
-  transform: none;
+  transition:
+    background 0.28s ease,
+    color 0.28s ease,
+    border-color 0.28s ease,
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
 }
 
 .btn-primary {
@@ -203,6 +204,7 @@ section {
 
 .btn-primary:hover {
   background: #16639f;
+  box-shadow: 0 10px 22px rgba(27, 117, 187, 0.28);
 }
 
 .btn-secondary {
@@ -213,6 +215,7 @@ section {
 
 .btn-secondary:hover {
   background: var(--color-light);
+  box-shadow: 0 8px 18px rgba(11, 46, 79, 0.1);
 }
 
 .btn-light {
@@ -220,10 +223,29 @@ section {
   color: var(--color-navy);
 }
 
+.btn-light:hover {
+  box-shadow: 0 8px 18px rgba(11, 46, 79, 0.12);
+}
+
 .btn-ghost-light {
   background: transparent;
   color: white;
   border-color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
 }
 
 .btn-row {
@@ -542,10 +564,21 @@ section {
   border-radius: var(--radius-card);
   background: white;
   padding: 28px;
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
 }
 
 a.card:hover {
-  border-color: #b7cfe0;
+  border-color: #9fbfd4;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(11, 46, 79, 0.1);
+  }
 }
 
 .card h3 {
@@ -675,6 +708,7 @@ a.card:hover {
   font-weight: 600;
   text-align: center;
   text-decoration: none;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
 }
 
 .logo-tile img {
@@ -682,12 +716,20 @@ a.card:hover {
   height: 68px;
   object-fit: contain;
   filter: grayscale(1);
-  transition: filter 0.2s ease;
+  transition: filter 0.28s ease;
 }
 
 .logo-tile.logo-color img,
 .logo-tile:hover img {
   filter: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.logo-tile:hover {
+    border-color: #9fbfd4;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(11, 46, 79, 0.08);
+  }
 }
 
 .logo-marquee {
@@ -977,6 +1019,7 @@ a.card:hover {
   border-radius: 28px;
   background: var(--color-blue);
   color: white;
+  box-shadow: 0 18px 40px rgba(27, 117, 187, 0.22);
 }
 
 .cta-panel h2,
@@ -1643,6 +1686,22 @@ a.card:hover {
 
 .work-card:not(.showcase-card) img {
   object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.work-card:not(.showcase-card):hover > img {
+    transform: scale(1.04);
+    filter: brightness(0.9);
+  }
+
+  a.showcase-card:hover .showcase-visual img {
+    transform: scale(1.04);
+  }
+}
+
+.showcase-card .showcase-visual img {
+  transition: transform 0.35s ease;
 }
 
 .work-card img.work-card-logo {
@@ -1818,6 +1877,33 @@ a.card:hover {
 @media (prefers-reduced-motion: no-preference) {
   .rise {
     animation: rise 0.55s ease both;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .card,
+  a.card,
+  .work-card img,
+  .showcase-card .showcase-visual img {
+    transition: none;
+  }
+
+  .btn:hover,
+  a.card:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
 
