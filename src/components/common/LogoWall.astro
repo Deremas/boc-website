@@ -12,6 +12,8 @@ interface Props {
 }
 
 const { clients, marquee = false } = Astro.props;
+/** Marquee only shows clients with logos — blank text tiles look broken while scrolling. */
+const visible = marquee ? clients.filter((client) => Boolean(client.logo)) : clients;
 ---
 
 {
@@ -20,11 +22,17 @@ const { clients, marquee = false } = Astro.props;
       <div class="logo-marquee-track">
         {[false, true].map((clone) => (
           <div class="logo-marquee-set" aria-hidden={clone ? "true" : undefined}>
-            {clients.map((client) => {
-              const tile = client.logo ? (
-                <img src={client.logo} alt={clone ? "" : `${client.name} logo`} loading="lazy" />
-              ) : (
-                <span>{client.name}</span>
+            {visible.map((client) => {
+              const tile = (
+                <img
+                  src={client.logo}
+                  alt={clone ? "" : `${client.name} logo`}
+                  width="140"
+                  height="56"
+                  loading={clone ? "lazy" : "eager"}
+                  decoding="async"
+                  fetchpriority={clone ? "low" : "auto"}
+                />
               );
               const className = ["logo-tile", client.color && "logo-color"];
               return client.website ? (
@@ -56,9 +64,16 @@ const { clients, marquee = false } = Astro.props;
     </div>
   ) : (
     <div class="logo-wall">
-      {clients.map((client) => {
+      {visible.map((client) => {
         const tile = client.logo ? (
-          <img src={client.logo} alt={`${client.name} logo`} loading="lazy" />
+          <img
+            src={client.logo}
+            alt={`${client.name} logo`}
+            width="140"
+            height="56"
+            loading="lazy"
+            decoding="async"
+          />
         ) : (
           <span>{client.name}</span>
         );
