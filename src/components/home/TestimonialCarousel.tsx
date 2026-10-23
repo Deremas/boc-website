@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type CSSProperties } from "react";
+import { useEffect, useId, useState } from "react";
 
 export type Testimonial = {
   quote: string;
@@ -8,9 +8,8 @@ export type Testimonial = {
   photo?: string;
 };
 
-/** Seconds between each testimonial advance (home + marketing). */
+/** Milliseconds between each testimonial advance (home + marketing). */
 export const TESTIMONIAL_INTERVAL_MS = 4000;
-const MAX_VISIBLE = 3;
 
 function PauseIcon() {
   return (
@@ -98,9 +97,10 @@ export default function TestimonialCarousel({
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [held, setHeld] = useState(false);
-  const [visible, setVisible] = useState(rail ? 1 : showAllFrom ? items.length : MAX_VISIBLE);
+  const [animate, setAnimate] = useState(true);
+  const [visible, setVisible] = useState(rail ? 1 : 3);
   const count = Math.min(visible, items.length);
-  const showingAll = !rail && count >= items.length;
+  const showingAll = !rail && Boolean(showAllFrom) && visible >= items.length;
   const canRotate = !showingAll && interval > 0 && items.length > count;
   const motionPaused = paused || held;
 
@@ -123,7 +123,8 @@ export default function TestimonialCarousel({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const timer = window.setTimeout(() => {
-      setIndex((value) => (value + 1) % items.length);
+      setAnimate(true);
+      setIndex((value) => value + 1);
     }, interval);
 
     return () => window.clearTimeout(timer);
@@ -135,12 +136,47 @@ export default function TestimonialCarousel({
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
+  // After sliding into the cloned tail, snap back to the real start with no transition.
+  useEffect(() => {
+    if (!canRotate || index < items.length) return;
+    const timer = window.setTimeout(() => {
+      setAnimate(false);
+      setIndex(0);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setAnimate(true));
+      });
+    }, 620);
+    return () => window.clearTimeout(timer);
+  }, [index, items.length, canRotate]);
+
   if (items.length === 0) return null;
 
-  const shown = showingAll
-    ? items
-    : Array.from({ length: count }, (_, offset) => items[(index + offset) % items.length]);
-  const step = (direction: number) => setIndex((value) => (value + direction + items.length) % items.length);
+  const goNext = () => {
+    setAnimate(true);
+    setIndex((value) => value + 1);
+  };
+
+  const goPrev = () => {
+    if (!canRotate) {
+      setAnimate(true);
+      setIndex((value) => (value - 1 + items.length) % items.length);
+      return;
+    }
+    if (index > 0) {
+      setAnimate(true);
+      setIndex((value) => value - 1);
+      return;
+    }
+    // Jump to clone zone without animating, then slide back one card.
+    setAnimate(false);
+    setIndex(items.length);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setAnimate(true);
+        setIndex(items.length - 1);
+      });
+    });
+  };
 
   const hold = () => {
     if (!fineHover) return;
@@ -155,6 +191,9 @@ export default function TestimonialCarousel({
     setHeld(false);
   };
 
+  const trackItems = canRotate ? [...items, ...items.slice(0, count)] : items;
+  const slideIndex = showingAll ? 0 : index;
+
   return (
     <div
       className={`carousel${rail ? " carousel-rail" : ""}${motionPaused ? " is-paused" : ""}`}
@@ -164,39 +203,41 @@ export default function TestimonialCarousel({
       onBlurCapture={release}
       aria-roledescription={canRotate ? "carousel" : undefined}
       aria-labelledby={labelId}
+      style={{ ["--cols" as string]: String(Math.max(count, 1)) }}
     >
       <span id={labelId} className="sr-only">
         Client testimonials
       </span>
-      <div
-        className={`quote-row${rail ? " quote-rail" : ""}`}
-        key={showingAll ? "all" : index}
-        aria-live="polite"
-      >
-        {shown.map((item, offset) => (
-          <article
-            className="card quote-card"
-            key={`${item.name}-${item.company}-${offset}`}
-            style={{ "--quote-delay": `${offset * 60}ms` } as CSSProperties}
-          >
-            <blockquote>“{item.quote}”</blockquote>
-            <div className="quote-person">
-              {item.photo ? (
-                <img className="quote-photo" src={item.photo} alt="" width="56" height="56" loading="lazy" />
-              ) : null}
-              <div>
-                <strong>{item.name}</strong>
-                <p>
-                  {item.role}, {item.company}
-                </p>
+      <div className={`quote-viewport${rail ? " quote-rail" : ""}`} aria-live="polite">
+        <div
+          className={`quote-track${animate ? " is-animated" : ""}`}
+          style={{
+            transform: showingAll
+              ? undefined
+              : `translateX(calc(-1 * ${slideIndex} * (100cqw + var(--quote-gap)) / var(--cols)))`,
+          }}
+        >
+          {trackItems.map((item, offset) => (
+            <article className="card quote-card" key={`${item.name}-${item.company}-${offset}`}>
+              <blockquote>“{item.quote}”</blockquote>
+              <div className="quote-person">
+                {item.photo ? (
+                  <img className="quote-photo" src={item.photo} alt="" width="56" height="56" loading="lazy" />
+                ) : null}
+                <div>
+                  <strong>{item.name}</strong>
+                  <p>
+                    {item.role}, {item.company}
+                  </p>
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
       {(canRotate || rail) && items.length > count && (
         <div className="carousel-nav">
-          <button type="button" onClick={() => step(-1)} aria-label="Previous testimonial">
+          <button type="button" onClick={goPrev} aria-label="Previous testimonial">
             <ChevronLeft />
           </button>
           {canRotate && (
@@ -210,7 +251,7 @@ export default function TestimonialCarousel({
               {paused ? <PlayIcon /> : <PauseIcon />}
             </button>
           )}
-          <button type="button" onClick={() => step(1)} aria-label="Next testimonial">
+          <button type="button" onClick={goNext} aria-label="Next testimonial">
             <ChevronRight />
           </button>
         </div>

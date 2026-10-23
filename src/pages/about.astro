@@ -93,17 +93,26 @@ function showRole(role: string) {
     <div class="container">
       <h2>How we are organised</h2>
       <div class="org" style="margin-top: 20px;" role="list" aria-label="Company structure">
-        <span class="org-node org-root" role="listitem">{org.ceo}</span>
+        <div class="org-unit org-root" role="listitem">
+          <span class="org-title">{org.ceo.title}</span>
+          <span class="org-detail">{org.ceo.detail}</span>
+        </div>
         <span class="org-stem" aria-hidden="true"></span>
         <div class="org-tier" role="presentation">
           {org.reports.map((role) => (
-            <span class="org-node" role="listitem">{role}</span>
+            <div class="org-unit" role="listitem">
+              <span class="org-title">{role.title}</span>
+              <span class="org-detail">{role.detail}</span>
+            </div>
           ))}
         </div>
         <span class="org-stem" aria-hidden="true"></span>
         <div class="org-tier org-tier-wings" role="presentation">
           {org.wings.map((wing) => (
-            <span class="org-node" role="listitem">{wing}</span>
+            <div class="org-unit" role="listitem">
+              <span class="org-title">{wing.title}</span>
+              <span class="org-detail">{wing.detail}</span>
+            </div>
           ))}
         </div>
       </div>

@@ -1084,14 +1084,18 @@ section {
     transform: translateX(6px);
   }
 
-  .org-node:hover {
-    border-color: rgba(0, 175, 237, 0.55);
-    box-shadow: 0 8px 20px rgba(0, 175, 237, 0.16);
+  .org-unit:hover {
     transform: translateY(-2px);
   }
 
-  .org-root:hover {
-    border-color: var(--color-blue);
+  .org-unit:hover .org-title {
+    background: var(--color-blue);
+    color: var(--color-white);
+    box-shadow: 0 8px 20px rgba(0, 175, 237, 0.28);
+  }
+
+  .org-root:hover .org-title {
+    background: var(--color-blue);
     box-shadow: 0 12px 28px rgba(0, 175, 237, 0.28);
   }
 
@@ -1203,9 +1207,13 @@ section {
     box-shadow: inset 0 -3px 0 var(--color-blue);
   }
 
-  .org-node:active {
+  .org-unit:active {
     transform: translateY(-1px);
-    border-color: rgba(0, 175, 237, 0.5);
+  }
+
+  .org-unit:active .org-title {
+    background: var(--color-blue);
+    color: var(--color-white);
   }
 
   .mission-card:active,
@@ -1699,97 +1707,41 @@ a.result-card:hover strong {
 }
 
 .carousel {
+  --quote-gap: 16px;
+  --cols: 1;
   display: grid;
   gap: 16px;
 }
 
-.quote-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
-  align-items: stretch;
+.quote-viewport {
+  container-type: inline-size;
+  overflow: hidden;
+  width: 100%;
 }
 
-.quote-row .quote-card:nth-child(n + 2) {
-  display: none;
+.quote-track {
+  display: flex;
+  gap: var(--quote-gap);
+  will-change: transform;
 }
 
-.quote-row .quote-card {
-  height: 100%;
+.quote-track.is-animated {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .quote-row .quote-card {
-    animation: quote-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: var(--quote-delay, 0ms);
-  }
-
-  .quote-rail .quote-card {
-    animation-name: quote-slide;
-  }
+.quote-track .quote-card {
+  flex: 0 0 calc((100cqw - (var(--cols) - 1) * var(--quote-gap)) / var(--cols));
+  min-width: 0;
+  height: auto;
 }
 
-@keyframes quote-in {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.carousel.is-paused .quote-track.is-animated {
+  transition-duration: 0.85s;
 }
 
-@keyframes quote-slide {
-  from {
-    opacity: 0;
-    transform: translateX(28px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.quote-rail {
-  grid-template-columns: minmax(0, 1fr) !important;
-}
-
-@media (min-width: 1100px) {
-  .quote-rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-
-  .quote-rail .quote-card:nth-child(n + 2) {
-    display: flex !important;
-  }
-
-  .quote-rail .quote-card:nth-child(n + 3) {
-    display: none !important;
-  }
-}
-
-@media (min-width: 760px) {
-  .quote-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .quote-row .quote-card:nth-child(n + 2) {
-    display: flex;
-  }
-
-  .quote-row .quote-card:nth-child(n + 3) {
-    display: none;
-  }
-}
-
-@media (min-width: 1100px) {
-  .quote-row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .quote-row .quote-card:nth-child(n + 3) {
-    display: flex;
+@media (prefers-reduced-motion: reduce) {
+  .quote-track.is-animated {
+    transition: none;
   }
 }
 
@@ -2800,6 +2752,8 @@ a.result-card:hover strong {
 
 .org {
   --org-line: rgba(0, 175, 237, 0.55);
+  --org-pill: #7ec8e8;
+  --org-pill-text: #0b2e4f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2818,7 +2772,7 @@ a.result-card:hover strong {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 14px 18px;
   position: relative;
   width: fit-content;
   max-width: 100%;
@@ -2835,16 +2789,11 @@ a.result-card:hover strong {
   background: var(--org-line);
 }
 
-.org-node,
 .leader-card,
 .location-card {
   border: 1px solid var(--color-line);
   border-radius: 16px;
   background: var(--color-white);
-}
-
-.leader-card,
-.location-card {
   overflow: hidden;
   transition:
     border-color 0.3s ease,
@@ -2866,22 +2815,44 @@ a.result-card:hover strong {
   transition: color 0.25s ease;
 }
 
-.org-node {
+.org-unit {
   position: relative;
   z-index: 1;
-  padding: 10px 14px;
-  color: var(--color-navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 220px;
+  transition: transform 0.25s ease;
+}
+
+.org-title {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--org-pill);
+  color: var(--org-pill-text);
   font-weight: 600;
-  box-shadow: 0 6px 16px rgba(11, 46, 79, 0.06);
+  font-size: 0.92rem;
+  line-height: 1.25;
+  box-shadow: 0 4px 12px rgba(11, 46, 79, 0.08);
   transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease,
     background 0.25s ease,
+    box-shadow 0.25s ease,
     color 0.25s ease;
 }
 
-.org-tier .org-node::before {
+.org-detail {
+  display: block;
+  padding: 0 6px;
+  color: var(--color-ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.org-tier .org-unit::before {
   content: "";
   position: absolute;
   top: -18px;
@@ -2893,8 +2864,11 @@ a.result-card:hover strong {
 }
 
 .org-root {
+  max-width: 280px;
+}
+
+.org-root .org-title {
   background: var(--color-navy);
-  border-color: var(--color-navy);
   color: var(--color-white);
   box-shadow: 0 10px 24px rgba(11, 46, 79, 0.18);
 }
@@ -2920,7 +2894,7 @@ a.result-card:hover strong {
     display: grid;
     grid-template-columns: 1fr;
     width: min(100%, 320px);
-    gap: 10px;
+    gap: 14px;
     padding-top: 0;
     padding-left: 18px;
     border-left: 2px solid var(--org-line);
@@ -2930,7 +2904,7 @@ a.result-card:hover strong {
     display: none;
   }
 
-  .org-tier .org-node::before {
+  .org-tier .org-unit::before {
     top: 50%;
     left: -18px;
     width: 16px;
@@ -2938,8 +2912,15 @@ a.result-card:hover strong {
     transform: translateY(-50%);
   }
 
-  .org-tier-wings .org-node {
+  .org-tier .org-unit {
+    align-items: flex-start;
+    max-width: none;
     text-align: left;
+  }
+
+  .org-title {
+    width: auto;
+    max-width: 100%;
   }
 }
 
@@ -3562,7 +3543,7 @@ a.work-card:hover {
   .showcase-card:hover,
   .leader-card:hover,
   .location-card:hover,
-  .org-node:hover,
+  .org-unit:hover,
   .disclose-body .card:hover {
     transform: none;
     box-shadow: none;

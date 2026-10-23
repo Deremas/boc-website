@@ -12,7 +12,7 @@ import { getCollection } from "astro:content";
 import { healthClients, languageExamples } from "../data/services";
 import { languages } from "../data/company";
 
-const quoteOrder = ["apex", "peniel", "evolve", "ag-grace", "builders"];
+const quoteOrder = ["builders", "apex", "lavish", "fana", "peniel", "evolve", "ag-grace"];
 const quotes = (await getCollection("testimonials"))
   .filter((entry) => entry.data.pages.includes("marketing"))
   .sort((a, b) => quoteOrder.indexOf(a.id) - quoteOrder.indexOf(b.id))

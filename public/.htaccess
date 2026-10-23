@@ -1,0 +1,26 @@
+# Blue Ocean Creatives — Apache (cPanel) rules for Astro static output
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Contact API (Astro form posts to /api/contact)
+  RewriteRule ^api/contact/?$ api/contact.php [L,QSA]
+
+  # Old WordPress paths
+  RewriteRule ^services/?$ /digital-marketing [R=301,L]
+  RewriteRule ^portfolios/?$ /work [R=301,L]
+
+  # Serve /about → /about/index.html (trailingSlash: never)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

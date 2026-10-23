@@ -136,14 +136,41 @@ export const leadership = [
 ] as const;
 
 export const org = {
-  ceo: "CEO",
-  reports: ["GM & COO", "Finance & Administration"],
+  ceo: {
+    title: "Chief Executive Officer",
+    detail: "Dawit Lake Netere, Co-Founder",
+  },
+  reports: [
+    {
+      title: "General Manager & Chief Operating Officer",
+      detail: "Befekadu Feleke, Co-Founder",
+    },
+    {
+      title: "Finance & Administration",
+      detail: "Michal Cal, Chief Financial Officer",
+    },
+  ],
   wings: [
-    "Social Media Wing",
-    "Technology Wing",
-    "Capacity Building & Training",
-    "Dire Dawa Team",
-    "Adama Team",
+    {
+      title: "Social Media Wing",
+      detail: "Nathnael Zerihun, Creative Director",
+    },
+    {
+      title: "Technology Wing",
+      detail: "Lead Developer & Solution Architect Director",
+    },
+    {
+      title: "Capacity Building & Training",
+      detail: "Capacity Building Lead",
+    },
+    {
+      title: "Dire Dawa Team",
+      detail: "Lead Director (production) and IT lead",
+    },
+    {
+      title: "Adama Team",
+      detail: "Production Directors",
+    },
   ],
 } as const;
 

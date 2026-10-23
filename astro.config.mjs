@@ -42,11 +42,14 @@ function oldSiteRedirects() {
   };
 }
 
+const cpanel = process.env.DEPLOY_TARGET === "cpanel";
+
 export default defineConfig({
   site: "https://blueoceancreatives.com",
   output: "static",
   session: false,
-  adapter: vercel(),
+  // Vercel for serverless /api; plain static for cPanel FTP deploys.
+  adapter: cpanel ? undefined : vercel(),
   trailingSlash: "never",
   integrations: [react(), sitemap()],
   vite: {

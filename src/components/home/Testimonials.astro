@@ -3,8 +3,21 @@ import SectionHeading from "../common/SectionHeading.astro";
 import TestimonialCarousel from "./TestimonialCarousel";
 import { getCollection } from "astro:content";
 
-const order = ["apex", "wow-energy", "peniel", "evolve", "konel", "nova-water", "vector", "builders", "ag-grace"];
+const order = [
+  "builders",
+  "apex",
+  "lavish",
+  "fana",
+  "wow-energy",
+  "peniel",
+  "evolve",
+  "konel",
+  "nova-water",
+  "vector",
+  "ag-grace",
+];
 const quotes = (await getCollection("testimonials"))
+  .filter((entry) => entry.data.pages.includes("home"))
   .sort((a, b) => {
     const rank = (id: string) => {
       const place = order.indexOf(id);

@@ -18,6 +18,11 @@ pnpm-debug.log*
 .env
 .env.production
 
+# cPanel contact API secrets (generated on deploy)
+public/api/config.php
+dist/api/config.php
+*.cpanelbak
+
 # macOS-specific files
 .DS_Store
 
