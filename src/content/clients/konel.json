@@ -1,5 +1,6 @@
 {
   "name": "Konel",
-  "logo": "/logos/clients/konel.webp",
+  "logo": "/images/client_testimonials/konel.png",
+  "color": true,
   "order": 4
 }

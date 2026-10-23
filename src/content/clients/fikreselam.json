@@ -1,5 +1,6 @@
 {
   "name": "Fikreselam General Hospital",
-  "logo": "/logos/clients/fikreselam.webp",
+  "logo": "/logos/clients/fikreselam.png",
+  "color": true,
   "order": 8
 }

@@ -1,5 +1,6 @@
 {
   "name": "Nova Water",
-  "logo": "/logos/clients/nova-water.webp",
+  "logo": "/logos/clients/nova-water.png",
+  "color": true,
   "order": 5
 }

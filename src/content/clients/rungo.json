@@ -1,6 +1,7 @@
 {
   "name": "Rungo Liquars",
-  "logo": "/logos/clients/rungo.webp",
+  "logo": "/logos/clients/rungo.png",
   "website": "https://rungooneoperations.com",
+  "color": true,
   "order": 12
 }

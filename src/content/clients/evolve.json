@@ -1,5 +1,6 @@
 {
   "name": "Evolve EV",
-  "logo": "/logos/clients/evolve.webp",
+  "logo": "/logos/clients/evolve.png",
+  "color": true,
   "order": 10
 }

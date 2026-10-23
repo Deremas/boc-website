@@ -1406,15 +1406,20 @@ a.result-card:hover strong {
 
 .logo-tile img {
   width: 100%;
-  max-width: 140px;
-  height: 56px;
+  max-width: 148px;
+  height: 64px;
   object-fit: contain;
-  opacity: 0.72;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  /* Prefer real logo color; muted look made dark/light logos look like text pills */
+  opacity: 1;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.logo-tile:not(.logo-color) img {
+  filter: grayscale(0.15);
 }
 
 .logo-tile.logo-color img {
-  opacity: 1;
+  filter: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1425,7 +1430,7 @@ a.result-card:hover strong {
   }
 
   .logo-tile:hover img {
-    opacity: 1;
+    filter: none;
     transform: scale(1.05);
   }
 }
@@ -1438,7 +1443,7 @@ a.result-card:hover strong {
   }
 
   .logo-tile:active img {
-    opacity: 1;
+    filter: none;
     transform: scale(1.03);
   }
 }

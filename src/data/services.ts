@@ -71,7 +71,7 @@ export const languageExamples = [
 
 export const healthClients = [
   { name: "Lavish Medical Spa", logo: "/logos/clients/lavish.webp" },
-  { name: "Fikreselam General Hospital", logo: "/logos/clients/fikreselam.webp" },
+  { name: "Fikreselam General Hospital", logo: "/logos/clients/fikreselam.png" },
   { name: "Harme Medical Center", logo: "/logos/clients/harme.webp" },
   { name: "Viola Brows & Beauty", logo: "/logos/clients/viola.webp" },
 ] as const;

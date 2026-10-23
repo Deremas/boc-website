@@ -27,8 +27,8 @@ const visible = marquee ? clients.filter((client) => Boolean(client.logo)) : cli
                 <img
                   src={client.logo}
                   alt={clone ? "" : `${client.name} logo`}
-                  width="140"
-                  height="56"
+                  width="148"
+                  height="64"
                   loading={clone ? "lazy" : "eager"}
                   decoding="async"
                   fetchpriority={clone ? "low" : "auto"}
@@ -69,8 +69,8 @@ const visible = marquee ? clients.filter((client) => Boolean(client.logo)) : cli
           <img
             src={client.logo}
             alt={`${client.name} logo`}
-            width="140"
-            height="56"
+            width="148"
+            height="64"
             loading="lazy"
             decoding="async"
           />
