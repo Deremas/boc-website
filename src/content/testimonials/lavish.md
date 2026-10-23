@@ -4,6 +4,7 @@ name: "Dr. Melat Solomon"
 role: "CEO"
 company: "Lavish Medical Spa"
 photo: "/images/testimonials/melat-solomon-lavish.webp"
+logo: "/images/client_testimonials/lavish.png"
 pages:
   - home
   - marketing

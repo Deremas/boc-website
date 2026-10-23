@@ -1,9 +1,9 @@
 ---
 import SectionHeading from "../common/SectionHeading.astro";
 import TestimonialCarousel from "./TestimonialCarousel";
-import { getCollection } from "astro:content";
+import { testimonialsFor } from "../../utils/testimonials";
 
-const order = [
+const quotes = await testimonialsFor("home", [
   "builders",
   "apex",
   "lavish",
@@ -15,17 +15,7 @@ const order = [
   "nova-water",
   "vector",
   "ag-grace",
-];
-const quotes = (await getCollection("testimonials"))
-  .filter((entry) => entry.data.pages.includes("home"))
-  .sort((a, b) => {
-    const rank = (id: string) => {
-      const place = order.indexOf(id);
-      return place === -1 ? order.length : place;
-    };
-    return rank(a.id) - rank(b.id);
-  })
-  .map((entry) => entry.data);
+]);
 ---
 
 <section class="section-tint">

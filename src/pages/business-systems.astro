@@ -12,17 +12,14 @@ import Icon from "../components/common/Icon.astro";
 import SectionHeading from "../components/common/SectionHeading.astro";
 import TestimonialCarousel from "../components/home/TestimonialCarousel";
 import { erpDifferences, erpModules, systemProjects } from "../data/services";
-import { getCollection } from "astro:content";
+import { testimonialsFor } from "../utils/testimonials";
 
-const quotes = (await getCollection("testimonials"))
-  .filter((entry) => entry.data.pages.includes("systems"))
-  .map((entry) => ({
-    quote: entry.data.quote,
-    name: entry.data.name,
-    role: entry.data.role,
-    company: entry.data.company,
-    photo: entry.data.photo,
-  }));
+const quotes = await testimonialsFor("systems", [
+  "konel",
+  "nova-water",
+  "vector",
+  "wow-energy",
+]);
 ---
 
 <BaseLayout

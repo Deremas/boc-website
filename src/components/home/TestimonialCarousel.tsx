@@ -6,6 +6,7 @@ export type Testimonial = {
   role: string;
   company: string;
   photo?: string;
+  logo?: string;
 };
 
 /** Milliseconds between each testimonial advance (home + marketing). */
@@ -217,22 +218,36 @@ export default function TestimonialCarousel({
               : `translateX(calc(-1 * ${slideIndex} * (100cqw + var(--quote-gap)) / var(--cols)))`,
           }}
         >
-          {trackItems.map((item, offset) => (
-            <article className="card quote-card" key={`${item.name}-${item.company}-${offset}`}>
-              <blockquote>“{item.quote}”</blockquote>
-              <div className="quote-person">
-                {item.photo ? (
-                  <img className="quote-photo" src={item.photo} alt="" width="56" height="56" loading="lazy" />
+          {trackItems.map((item, offset) => {
+            const avatar = item.photo || item.logo;
+            const avatarIsLogo = !item.photo && Boolean(item.logo);
+            return (
+              <article className="card quote-card" key={`${item.company}-${item.name}-${offset}`}>
+                {item.logo && item.photo ? (
+                  <img className="quote-logo" src={item.logo} alt="" width="120" height="40" loading="lazy" />
                 ) : null}
-                <div>
-                  <strong>{item.name}</strong>
-                  <p>
-                    {item.role}, {item.company}
-                  </p>
+                <blockquote>“{item.quote}”</blockquote>
+                <div className="quote-person">
+                  {avatar ? (
+                    <img
+                      className={`quote-photo${avatarIsLogo ? " is-logo" : ""}`}
+                      src={avatar}
+                      alt=""
+                      width="56"
+                      height="56"
+                      loading="lazy"
+                    />
+                  ) : null}
+                  <div>
+                    <strong>{item.name}</strong>
+                    <p>
+                      {item.role}, {item.company}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
       {(canRotate || rail) && items.length > count && (

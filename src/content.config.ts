@@ -35,6 +35,7 @@ const testimonials = defineCollection({
     role: z.string(),
     company: z.string(),
     photo: z.string().optional(),
+    logo: z.string().optional(),
     pages: z.array(z.enum(["home", "marketing", "systems"])),
   }),
 });

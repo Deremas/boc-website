@@ -7,6 +7,7 @@ import CaseStudyHero from "../components/work/CaseStudyHero.astro";
 import ResultsMetrics from "../components/work/ResultsMetrics.astro";
 import TestimonialCard from "../components/common/TestimonialCard.astro";
 import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<"caseStudies">;
@@ -22,6 +23,11 @@ const crumbs = [
   { name: "Our Work", url: "https://blueoceancreatives.com/work" },
   { name: data.title, url: `https://blueoceancreatives.com/work/${entry.id}` },
 ];
+const quoteLogo = data.quoteCompany
+  ? (await getCollection("testimonials")).find(
+      (item) => item.data.company.trim().toLowerCase() === data.quoteCompany!.trim().toLowerCase(),
+    )?.data.logo
+  : undefined;
 ---
 
 <BaseLayout title={`${data.title} — Case Study | Blue Ocean Creatives`} description={data.headlineResult}>
@@ -93,6 +99,7 @@ const crumbs = [
             name={data.quoteName}
             role={data.quoteRole}
             company={data.quoteCompany}
+            logo={quoteLogo}
           />
         </div>
       </section>

@@ -43,7 +43,7 @@ export const company = {
   chekelaPlayUrl:
     "https://play.google.com/store/apps/details?id=com.chkela.v1&hl=en",
   chekelaAppStoreUrl: "https://apps.apple.com/ke/app/chkela/id6738397728",
-  profilePdf: "/documents/blue-ocean-company-profile.pdf",
+  profilePdf: "/documents/BOC_Company_Profile.pdf",
 } as const;
 
 export const proof = [

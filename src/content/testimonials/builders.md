@@ -4,6 +4,7 @@ name: "Amanuel Teshome"
 role: "Marketing Manager"
 company: "Builders Creamy Trading PLC"
 photo: "/images/testimonials/amanuel-teshome-builders.jpg"
+logo: "/images/client_testimonials/builders-creamy-trading-logo.png"
 pages:
   - home
   - marketing

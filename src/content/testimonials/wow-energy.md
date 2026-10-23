@@ -3,6 +3,7 @@ quote: "The ERP system enabled better visibility, improved decision-making, and 
 name: "Suleman Ali"
 role: "General Manager"
 company: "Wow Energy Services PLC"
+logo: "/images/client_testimonials/wow.png"
 pages:
   - home
   - systems

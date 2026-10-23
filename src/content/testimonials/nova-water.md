@@ -3,6 +3,7 @@ quote: "The system is in daily operation. Quality decisions are captured in the 
 name: "Ayub Ahmed"
 role: "CEO"
 company: "Melayan Manufacturing PLC – Nova Water"
+logo: "/images/client_testimonials/nova.png"
 pages:
   - systems
 ---

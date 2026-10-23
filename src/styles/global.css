@@ -1670,6 +1670,15 @@ a.result-card:hover strong {
   min-height: 100%;
 }
 
+.quote-logo {
+  align-self: flex-start;
+  width: auto;
+  max-width: 120px;
+  height: 36px;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .quote-card blockquote {
   margin: 0;
   color: var(--color-navy);
@@ -1683,6 +1692,7 @@ a.result-card:hover strong {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: auto;
 }
 
 .quote-photo {
@@ -1693,6 +1703,12 @@ a.result-card:hover strong {
   object-fit: cover;
   border: 2px solid rgba(0, 175, 237, 0.35);
   background: var(--color-light);
+}
+
+.quote-photo.is-logo {
+  padding: 8px;
+  object-fit: contain;
+  background: var(--color-white);
 }
 
 .quote-card strong {

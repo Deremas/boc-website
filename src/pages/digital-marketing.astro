@@ -8,21 +8,19 @@ import CreativeShowcase from "../components/marketing/CreativeShowcase.astro";
 import CTA from "../components/common/CTA.astro";
 import TestimonialCarousel from "../components/home/TestimonialCarousel";
 import SectionHeading from "../components/common/SectionHeading.astro";
-import { getCollection } from "astro:content";
 import { healthClients, languageExamples } from "../data/services";
 import { languages } from "../data/company";
+import { testimonialsFor } from "../utils/testimonials";
 
-const quoteOrder = ["builders", "apex", "lavish", "fana", "peniel", "evolve", "ag-grace"];
-const quotes = (await getCollection("testimonials"))
-  .filter((entry) => entry.data.pages.includes("marketing"))
-  .sort((a, b) => quoteOrder.indexOf(a.id) - quoteOrder.indexOf(b.id))
-  .map((entry) => ({
-    quote: entry.data.quote,
-    name: entry.data.name,
-    role: entry.data.role,
-    company: entry.data.company,
-    photo: entry.data.photo,
-  }));
+const quotes = await testimonialsFor("marketing", [
+  "builders",
+  "apex",
+  "lavish",
+  "fana",
+  "peniel",
+  "evolve",
+  "ag-grace",
+]);
 ---
 
 <BaseLayout

@@ -3,6 +3,7 @@ quote: "Over this period, the system has brought a clear improvement in stock vi
 name: "Dawit Mengesha Biru"
 role: "General Manager"
 company: "Konel Natural Purified Water PLC"
+logo: "/images/client_testimonials/konel.png"
 pages:
   - systems
 ---

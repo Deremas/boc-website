@@ -5,15 +5,30 @@ interface Props {
   role: string;
   company: string;
   photo?: string;
+  logo?: string;
 }
 
-const { quote, name, role, company, photo } = Astro.props;
+const { quote, name, role, company, photo, logo } = Astro.props;
+const avatar = photo || logo;
+const avatarIsLogo = !photo && Boolean(logo);
 ---
 
 <article class="card quote-card testimonial">
+  {logo && photo ? <img class="quote-logo" src={logo} alt="" width="120" height="40" loading="lazy" /> : null}
   <blockquote>“{quote}”</blockquote>
   <div class="quote-person">
-    {photo ? <img class="quote-photo" src={photo} alt="" width="56" height="56" loading="lazy" /> : null}
+    {
+      avatar ? (
+        <img
+          class:list={["quote-photo", { "is-logo": avatarIsLogo }]}
+          src={avatar}
+          alt=""
+          width="56"
+          height="56"
+          loading="lazy"
+        />
+      ) : null
+    }
     <div>
       <strong>{name}</strong>
       <p>{role}, {company}</p>
