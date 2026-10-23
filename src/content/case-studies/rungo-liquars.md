@@ -2,6 +2,7 @@
 title: "Rungo Liquars"
 category: "business-systems"
 sector: "Liquor"
+location: "Addis Ababa"
 headlineResult: "Inventory, sales and purchases"
 heroImage: "/images/systems/rungo-one.webp"
 website: "https://rungooneoperations.com"

@@ -6,8 +6,9 @@ import { marketingResults } from "../../data/services";
 <section id="verified-results">
   <div class="container">
     <SectionHeading title="Verified results, 12 months to February 2026." />
-    <div class="card" style="overflow:auto;">
-      <table class="results-table">
+
+    <div class="card verified-results-panel verified-results-desktop">
+      <table class="results-table verified-results-table">
         <thead>
           <tr>
             <th>Account</th>
@@ -17,17 +18,56 @@ import { marketingResults } from "../../data/services";
         </thead>
         <tbody>
           {
-            marketingResults.map((row) => (
-              <tr>
-                <td data-label="Account">{row.account}</td>
-                <td data-label="Platform">{row.platform}</td>
-                <td data-label="Results">{row.results.join(" · ")}</td>
+            marketingResults.map((row, index) => (
+              <tr style={`--row-delay: ${index * 60}ms`}>
+                <td data-label="Account">
+                  <strong class="result-account">{row.account}</strong>
+                </td>
+                <td data-label="Platform">
+                  <span class="result-platform">{row.platform}</span>
+                </td>
+                <td data-label="Results">
+                  <ul class="result-metrics">
+                    {row.results.map((metric) => {
+                      const [value, ...rest] = metric.split(" ");
+                      return (
+                        <li>
+                          <strong>{value}</strong>
+                          <span>{rest.join(" ")}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </td>
               </tr>
             ))
           }
         </tbody>
       </table>
     </div>
-    <p class="caption">Source: Meta Business Suite and TikTok Analytics. Screenshots available on request.</p>
+
+    <div class="result-metric-grid verified-results-mobile" role="list">
+      {
+        marketingResults.map((row) => (
+          <article class="card result-metric-card" role="listitem">
+            <p class="eyebrow">{row.platform}</p>
+            <h3>{row.account}</h3>
+            <ul class="result-metrics">
+              {row.results.map((metric) => {
+                const [value, ...rest] = metric.split(" ");
+                return (
+                  <li>
+                    <strong>{value}</strong>
+                    <span>{rest.join(" ")}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="caption">Source: Meta Business Suite and TikTok Analytics.</p>
   </div>
 </section>

@@ -21,6 +21,7 @@ const quotes = (await getCollection("testimonials"))
     name: entry.data.name,
     role: entry.data.role,
     company: entry.data.company,
+    photo: entry.data.photo,
   }));
 ---
 
@@ -112,7 +113,7 @@ const quotes = (await getCollection("testimonials"))
   <section>
     <div class="container">
       <SectionHeading title="What the letters say." />
-      <TestimonialCarousel client:visible items={quotes} showAllFrom={1100} interval={0} />
+      <TestimonialCarousel client:visible items={quotes} variant="rail" />
     </div>
   </section>
   <FAQ />

@@ -12,6 +12,15 @@ interface Props {
     | "tutor"
     | "camera"
     | "planner"
+    | "feed"
+    | "ads"
+    | "brand"
+    | "stack"
+    | "boxes"
+    | "industry"
+    | "code"
+    | "languages"
+    | "chart"
     | "facebook"
     | "instagram"
     | "tiktok"
@@ -26,6 +35,23 @@ const brand =
   name === "tiktok" ||
   name === "linkedin" ||
   name === "telegram";
+const feature =
+  name === "book" ||
+  name === "exam" ||
+  name === "course" ||
+  name === "tutor" ||
+  name === "camera" ||
+  name === "planner" ||
+  name === "feed" ||
+  name === "ads" ||
+  name === "brand" ||
+  name === "stack" ||
+  name === "boxes" ||
+  name === "industry" ||
+  name === "code" ||
+  name === "languages" ||
+  name === "chart" ||
+  name === "pin";
 ---
 
 <svg
@@ -36,13 +62,7 @@ const brand =
       "icon-stroke": name === "instagram",
       "download-mark": name === "download",
       "external-mark": name === "external",
-      "feature-mark":
-        name === "book" ||
-        name === "exam" ||
-        name === "course" ||
-        name === "tutor" ||
-        name === "camera" ||
-        name === "planner",
+      "feature-mark": feature,
     },
   ]}
   width="18"
@@ -127,6 +147,82 @@ const brand =
         <rect x="4" y="5" width="16" height="15" rx="2" />
         <path d="M8 3.5v3M16 3.5v3M4 10h16" />
         <path d="M8 14h2M12 14h2M16 14h.01M8 17h2M12 17h2" />
+      </>
+    )
+  }
+  {
+    name === "feed" && (
+      <>
+        <rect x="4" y="4" width="16" height="16" rx="3" />
+        <path d="M8 9h8M8 12h8M8 15h5" />
+      </>
+    )
+  }
+  {
+    name === "ads" && (
+      <>
+        <path d="M4 12V8.5A2.5 2.5 0 0 1 6.5 6H14l6 6-6 6H6.5A2.5 2.5 0 0 1 4 15.5z" />
+        <path d="M14 6v12" />
+      </>
+    )
+  }
+  {
+    name === "brand" && (
+      <>
+        <circle cx="12" cy="12" r="8" />
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 4v2.5M12 17.5V20M4 12h2.5M17.5 12H20" />
+      </>
+    )
+  }
+  {
+    name === "stack" && (
+      <>
+        <path d="M4 8.5 12 5l8 3.5-8 3.5z" />
+        <path d="M4 12.5 12 16l8-3.5" />
+        <path d="M4 16.5 12 20l8-3.5" />
+      </>
+    )
+  }
+  {
+    name === "boxes" && (
+      <>
+        <path d="M4 8.5 12 4l8 4.5v9L12 22 4 17.5z" />
+        <path d="M12 13v9M4 8.5 12 13l8-4.5" />
+      </>
+    )
+  }
+  {
+    name === "industry" && (
+      <>
+        <path d="M3 20h18" />
+        <path d="M5 20V10l5 3V10l5 3V8h4v12" />
+      </>
+    )
+  }
+  {
+    name === "code" && (
+      <>
+        <path d="M8 7 3.5 12 8 17" />
+        <path d="M16 7l4.5 5L16 17" />
+        <path d="M13.5 5.5 10.5 18.5" />
+      </>
+    )
+  }
+  {
+    name === "languages" && (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M4.5 12h15" />
+        <path d="M12 3.5c2.4 2.6 3.6 5.4 3.6 8.5S14.4 17.9 12 20.5C9.6 17.9 8.4 15.1 8.4 12S9.6 6.1 12 3.5z" />
+      </>
+    )
+  }
+  {
+    name === "chart" && (
+      <>
+        <path d="M4 19h16" />
+        <path d="M7 16V10M12 16V7M17 16v-5" />
       </>
     )
   }

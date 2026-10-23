@@ -9,9 +9,9 @@ const { metrics, source } = Astro.props;
 
 {
   metrics.length > 0 && (
-    <div class="metrics">
+    <div class="metrics case-metrics">
       {metrics.map((metric) => (
-        <article>
+        <article class="metric-cell">
           <strong>{metric.value}</strong>
           <span>{metric.label}</span>
         </article>

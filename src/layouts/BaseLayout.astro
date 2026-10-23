@@ -82,22 +82,103 @@ const { title, description, image } = Astro.props;
       });
 
       if (!reduce) {
-        const blocks = document.querySelectorAll<HTMLElement>("main > section, main > .container");
+        const show = (node: Element) => {
+          node.classList.add("is-in");
+        };
+
         const reveal = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
               if (!entry.isIntersecting) continue;
-              entry.target.classList.add("is-in");
+              show(entry.target);
               reveal.unobserve(entry.target);
             }
           },
-          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+          { threshold: 0.01, rootMargin: "0px 0px -40px 0px" },
         );
+
+        const observe = (node: HTMLElement) => {
+          reveal.observe(node);
+          const rect = node.getBoundingClientRect();
+          const vh = window.innerHeight || document.documentElement.clientHeight;
+          if (rect.top < vh * 0.98 && rect.bottom > 0) show(node);
+        };
+
+        const blocks = document.querySelectorAll<HTMLElement>("main > section, main > .container");
         blocks.forEach((block, index) => {
           if (index === 0) return;
           block.classList.add("reveal");
-          reveal.observe(block);
+          block.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 40}ms`);
+          observe(block);
         });
+
+        const cards = document.querySelectorAll<HTMLElement>(
+          [
+            ".why-grid > .card",
+            ".result-grid > a.card",
+            ".feature-grid > .card",
+            ".service-grid > .card",
+            ".service-grid > li.card",
+            ".work-grid > a.card",
+            ".practice-grid > .card",
+            ".health-strip > .card",
+            ".showcase-strip > a.card",
+            ".card-strip > .card",
+            ".card-strip > a.card",
+            ".steps > .step",
+            ".result-metric-grid > .card",
+            ".project-cards > .card",
+            ".proof-grid > .proof-stat",
+            ".product-frame",
+            ".leader-grid > .leader-card",
+            ".location-grid > .location-card",
+            ".pain-grid > .card",
+            ".faq details",
+            ".module-list > li",
+            ".card-soft",
+            ".reach-card",
+            ".contact-panel",
+            ".case-metrics > .card",
+            ".gallery-grid > *",
+            ".disclose-body > .card",
+            ".disclose-body > li.card",
+            ".quote-card",
+            ".org-node",
+            ".mission-card",
+            ".vision-card",
+            ".value-card",
+            ".ethiopia-card",
+            ".ethiopia-item",
+            ".role-card",
+            ".split > .card",
+            ".verified-results-panel",
+            ".project-card",
+            ".glance > .glance-cell",
+            ".case-metrics > .metric-cell",
+            ".gallery-grid > .gallery-shot",
+            ".chips > .chip",
+          ].join(", "),
+        );
+        cards.forEach((card, index) => {
+          card.classList.add("card-reveal");
+          card.style.setProperty("--reveal-delay", `${(index % 6) * 70}ms`);
+          observe(card);
+        });
+
+        // Never leave content stuck invisible if IO missed it
+        window.setTimeout(() => {
+          document
+            .querySelectorAll(".reveal:not(.is-in), .card-reveal:not(.is-in)")
+            .forEach(show);
+        }, 1800);
+
+        document.addEventListener("toggle", (event) => {
+          const target = event.target;
+          if (!(target instanceof HTMLDetailsElement) || !target.open) return;
+          target
+            .querySelectorAll(".reveal:not(.is-in), .card-reveal:not(.is-in)")
+            .forEach(show);
+        }, true);
       }
     </script>
   </body>

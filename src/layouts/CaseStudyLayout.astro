@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import Button from "../components/common/Button.astro";
 import CTA from "../components/common/CTA.astro";
 import Icon from "../components/common/Icon.astro";
 import CaseStudyHero from "../components/work/CaseStudyHero.astro";
@@ -13,6 +14,9 @@ interface Props {
 
 const { entry } = Astro.props;
 const data = entry.data;
+const categories = Array.isArray(data.category) ? data.category : [data.category];
+const isSystemsOnly = categories.length === 1 && categories[0] === "business-systems";
+const linkLabel = isSystemsOnly ? "System" : "Website";
 const crumbs = [
   { name: "Home", url: "https://blueoceancreatives.com/" },
   { name: "Our Work", url: "https://blueoceancreatives.com/work" },
@@ -30,20 +34,21 @@ const crumbs = [
     website={data.website}
     headline={data.headlineResult}
   />
-  <section>
+
+  <section class="section-tint case-glance">
     <div class="container">
       <h2>At a glance</h2>
       <div class="glance" style="margin-top: 16px;">
-        <div><span>Client</span><strong>{data.title}</strong></div>
-        <div><span>Sector</span><strong>{data.sector}</strong></div>
-        <div><span>Location</span><strong>{data.location || "—"}</strong></div>
-        <div><span>Services</span><strong>{data.services.join(" · ")}</strong></div>
-        {data.since && <div><span>Since</span><strong>{data.since}</strong></div>}
-        {data.reference && <div><span>Reference</span><strong>{data.reference}</strong></div>}
+        <div class="glance-cell"><span>Client</span><strong>{data.title}</strong></div>
+        <div class="glance-cell"><span>Sector</span><strong>{data.sector}</strong></div>
+        <div class="glance-cell"><span>Location</span><strong>{data.location || "—"}</strong></div>
+        <div class="glance-cell"><span>Services</span><strong>{data.services.join(" · ")}</strong></div>
+        {data.since && <div class="glance-cell"><span>Since</span><strong>{data.since}</strong></div>}
+        {data.reference && <div class="glance-cell"><span>Reference</span><strong>{data.reference}</strong></div>}
         {
           data.website && (
-            <div>
-              <span>Website</span>
+            <div class="glance-cell">
+              <span>{linkLabel}</span>
               <strong>
                 <a class="text-link text-link-external" href={data.website} target="_blank" rel="noopener noreferrer">
                   {data.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}<Icon name="external" />
@@ -55,15 +60,33 @@ const crumbs = [
       </div>
     </div>
   </section>
-  <section class="section-tint">
-    <div class="container prose" style="max-width: 760px; margin-inline: auto;">
-      <slot />
-      <ResultsMetrics metrics={data.metrics} source={data.source} />
+
+  <section class="case-story">
+    <div class="container case-story-grid">
+      <div class="prose case-prose">
+        <slot />
+        <ResultsMetrics metrics={data.metrics} source={data.source} />
+      </div>
+      {
+        data.website && (
+          <aside class="case-aside">
+            <div class="card case-aside-card">
+              <p class="eyebrow">{linkLabel}</p>
+              <h2>See it live</h2>
+              <p>Open the {linkLabel.toLowerCase()} we delivered for {data.title}.</p>
+              <Button href={data.website} external>
+                {data.website.replace(/^https?:\/\//, "").replace(/\/$/, "")}<Icon name="external" />
+              </Button>
+            </div>
+          </aside>
+        )
+      }
     </div>
   </section>
+
   {
     data.quote && data.quoteName && data.quoteRole && data.quoteCompany && (
-      <section>
+      <section class="section-tint">
         <div class="container" style="max-width: 760px;">
           <TestimonialCard
             quote={data.quote}
@@ -75,27 +98,30 @@ const crumbs = [
       </section>
     )
   }
+
   {
     data.gallery && data.gallery.length > 0 && (
       <section>
         <div class="container">
           <h2>Gallery</h2>
-          <div class="feature-grid" style="margin-top: 20px;">
+          <div class="feature-grid gallery-grid" style="margin-top: 20px;">
             {data.gallery.map((src) => (
-              <img src={src} alt={`${data.title} work`} loading="lazy" style="width:100%; border-radius:16px;" />
+              <img class="gallery-shot" src={src} alt={`${data.title} work`} loading="lazy" width="960" height="640" />
             ))}
           </div>
         </div>
       </section>
     )
   }
+
   <CTA
     title="Want results like these?"
     text="Tell us what you need — we reply within one working day."
-    primaryLabel={data.category === "business-systems" ? "Book a demo" : "Get a proposal"}
-    primaryHref={data.category === "business-systems" ? "/contact?interest=Blue%20Ocean%20ERP%20demo" : "/contact"}
-    primaryTrack={data.category === "business-systems" ? "erp-demo" : "proposal"}
+    primaryLabel={isSystemsOnly ? "Book a demo" : "Get a proposal"}
+    primaryHref={isSystemsOnly ? "/contact?interest=Blue%20Ocean%20ERP%20demo" : "/contact"}
+    primaryTrack={isSystemsOnly ? "erp-demo" : "proposal"}
   />
+
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

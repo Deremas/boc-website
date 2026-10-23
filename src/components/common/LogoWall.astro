@@ -16,7 +16,7 @@ const { clients, marquee = false } = Astro.props;
 
 {
   marquee ? (
-    <div class="logo-marquee">
+    <div class="logo-marquee" data-motion="marquee">
       <div class="logo-marquee-track">
         {[false, true].map((clone) => (
           <div class="logo-marquee-set" aria-hidden={clone ? "true" : undefined}>
@@ -44,6 +44,15 @@ const { clients, marquee = false } = Astro.props;
           </div>
         ))}
       </div>
+      <label class="motion-pause" title="Pause or play client logos">
+        <input type="checkbox" aria-label="Pause or play client logos" />
+        <svg class="motion-pause-icon is-pause" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"></path>
+        </svg>
+        <svg class="motion-pause-icon is-play" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M7 4.5v15l12-7.5L7 4.5z"></path>
+        </svg>
+      </label>
     </div>
   ) : (
     <div class="logo-wall">

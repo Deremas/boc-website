@@ -7,8 +7,7 @@ export const company = {
   phoneTel: "+251911061348",
   phoneAlt: "+251 966 336 503",
   phoneAltTel: "+251966336503",
-  email: "contact@blueoceancreatives.com",
-  emailCoo: "coo@blueoceancreatives.com",
+  email: "coo@blueoceancreatives.com",
   address:
     "Beyene Tebelue (BT) Building, 3rd Floor, Office 301, Axum Hotel Street, Haya Hulet, Addis Ababa",
   mapUrl:
@@ -65,18 +64,22 @@ export const languages = [
 
 export const why = [
   {
+    icon: "pin" as const,
     title: "On the ground in three cities",
     text: "Teams in Addis Ababa, Dire Dawa and Adama shoot, host, implement and support in person.",
   },
   {
+    icon: "languages" as const,
     title: "Five content languages",
     text: "Amharic, Afaan Oromoo, Somali, Tigrigna and English — not translated as an afterthought.",
   },
   {
+    icon: "code" as const,
     title: "We own our platform",
     text: "Blue Ocean ERP is built by our own engineers, so it adapts to your process.",
   },
   {
+    icon: "chart" as const,
     title: "Results you can check",
     text: "Every number on this site comes from platform analytics or a signed client letter.",
   },
@@ -186,7 +189,7 @@ export const teamGroups = [
       {
         name: "Saron Aklile",
         role: "Social Media Manager, Host and Sales",
-        image: "",
+        image: "/images/team/saron-aklile.webp",
       },
     ],
   },

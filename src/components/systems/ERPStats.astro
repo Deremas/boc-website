@@ -8,8 +8,8 @@ import { erpStats } from "../../data/services";
     <div class="proof-grid erp-stats">
       {
         erpStats.map((item) => (
-          <div>
-            <strong>{item.value}</strong>
+          <div class="proof-stat">
+            <strong data-count={item.value}>{item.value}</strong>
             <span>{item.label}</span>
           </div>
         ))

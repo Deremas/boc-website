@@ -4,15 +4,19 @@ interface Props {
   name: string;
   role: string;
   company: string;
+  photo?: string;
 }
 
-const { quote, name, role, company } = Astro.props;
+const { quote, name, role, company, photo } = Astro.props;
 ---
 
 <article class="card quote-card testimonial">
   <blockquote>“{quote}”</blockquote>
-  <div>
-    <strong>{name}</strong>
-    <p>{role}, {company}</p>
+  <div class="quote-person">
+    {photo ? <img class="quote-photo" src={photo} alt="" width="56" height="56" loading="lazy" /> : null}
+    <div>
+      <strong>{name}</strong>
+      <p>{role}, {company}</p>
+    </div>
   </div>
 </article>

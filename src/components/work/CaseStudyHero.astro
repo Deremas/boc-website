@@ -1,5 +1,6 @@
 ---
 import Icon from "../common/Icon.astro";
+import Button from "../common/Button.astro";
 
 interface Props {
   title: string;
@@ -13,35 +14,38 @@ interface Props {
 
 const { title, sector, location, services, image, website, headline } = Astro.props;
 const siteLabel = website?.replace(/^https?:\/\//, "").replace(/\/$/, "");
+const isLogo = Boolean(image?.startsWith("/logos/"));
 ---
 
-<div class="container hero">
-  <div>
-    <p class="eyebrow">{sector}{location ? ` · ${location}` : ""}</p>
-    <h1>{title}</h1>
-    <p class="lede">{headline}</p>
-    <div class="chips">
-      {services.map((service) => <span class="chip">{service}</span>)}
+<section class:list={["case-hero", { "case-hero-logo": isLogo }]}>
+  <div class="container hero case-hero-grid">
+    <div class="case-hero-copy">
+      <p class="eyebrow">{sector}{location ? ` · ${location}` : ""}</p>
+      <h1>{title}</h1>
+      <p class="lede">{headline}</p>
+      <div class="chips">
+        {services.map((service) => <span class="chip">{service}</span>)}
+      </div>
+      {
+        website && siteLabel && (
+          <div class="btn-row" style="margin-top: 18px;">
+            <Button href={website} variant="secondary" external>
+              Visit {siteLabel}<Icon name="external" />
+            </Button>
+          </div>
+        )
+      }
     </div>
     {
-      website && siteLabel && (
-        <p class="hero-site">
-          <a class="text-link text-link-external" href={website} target="_blank" rel="noopener noreferrer">
-            {siteLabel}<Icon name="external" />
-          </a>
-        </p>
+      image && (
+        isLogo ? (
+          <div class="case-logo-panel" aria-hidden="true">
+            <img class="case-logo-img" src={image} alt="" width="720" height="220" />
+          </div>
+        ) : (
+          <img class="frame-photo" src={image} alt={title} width="960" height="640" />
+        )
       )
     }
   </div>
-  {
-    image && (
-      <img
-        class:list={["frame-photo", { "hero-logo": image.startsWith("/logos/") }]}
-        src={image}
-        alt={title}
-        width="960"
-        height="640"
-      />
-    )
-  }
-</div>
+</section>

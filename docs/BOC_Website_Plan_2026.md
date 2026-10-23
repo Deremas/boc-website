@@ -209,7 +209,7 @@ Six numbered steps in a horizontal line: **Audit** → **Strategy** → **Create
 | Peniel Training Institute | Facebook & Instagram | 8.3M views · 18.7K link clicks · 32.7K page visits |
 | Apex Financial Solutions | Facebook & Instagram | 3.4M views · 51.7K interactions · 11.2K new follows |
 
-Caption under the table: “Source: Meta Business Suite and TikTok Analytics. Screenshots available on request.”
+Caption under the table: “Source: Meta Business Suite and TikTok Analytics.”
 
 #### Section 6 — Speaking every audience’s language
 
@@ -392,7 +392,7 @@ Wow Energy, Vector, Melayan (Nova Water) and Konel (translated) quotes from sect
 
 **Credentials:** Registered name Blue Pixel Trading PLC · Trade name Blue Ocean Creatives · TIN 0089705016 · Established April 2023 · Button: Download company profile (PDF).
 
-**Join us:** One line: “We’re growing. Send your CV to contact@blueoceancreatives.com.”
+**Reach us:** Email, phone and link to the contact form.
 
 ### 4.7 Contact & Book a Demo
 
@@ -400,7 +400,7 @@ Wow Energy, Vector, Melayan (Nova Water) and Konel (translated) quotes from sect
 |---|---|
 | URL | /contact |
 | SEO title | Contact Blue Ocean Creatives \| Addis Ababa, Ethiopia |
-| Meta description | Get a marketing proposal or book a live ERP demo. Call +251 911 061 348, email contact@blueoceancreatives.com or visit us at the BT Building, Haya Hulet, Addis Ababa. |
+| Meta description | Get a marketing proposal or book a live ERP demo. Call +251 911 061 348, email coo@blueoceancreatives.com or visit us at the BT Building, Haya Hulet, Addis Ababa. |
 
 **Headline:** Let’s talk. — “Tell us what you need. We reply within one working day.”
 
@@ -408,7 +408,7 @@ Wow Energy, Vector, Melayan (Nova Water) and Konel (translated) quotes from sect
 
 **Success message:** Thank you — we’ve received your message and will contact you within one working day.
 
-**Details panel:** Phone +251 911 061 348 · +251 966 336 503 · Email contact@blueoceancreatives.com · coo@blueoceancreatives.com · Office: Beyene Tebelue (BT) Building, 3rd Floor, Office 301, Axum Hotel Street, Haya Hulet, Addis Ababa · Regional teams: Dire Dawa, Adama · Google Map embed
+**Details panel:** Phone +251 911 061 348 · +251 966 336 503 · Email coo@blueoceancreatives.com · Office: Beyene Tebelue (BT) Building, 3rd Floor, Office 301, Axum Hotel Street, Haya Hulet, Addis Ababa · Regional teams: Dire Dawa, Adama · Google Map embed
 
 **Socials:** Facebook · Instagram · TikTok · LinkedIn · Telegram · Blue Ocean Afaan Oromoo (TikTok and Instagram)
 

@@ -21,6 +21,7 @@ const quotes = (await getCollection("testimonials"))
     name: entry.data.name,
     role: entry.data.role,
     company: entry.data.company,
+    photo: entry.data.photo,
   }));
 ---
 
@@ -31,10 +32,10 @@ const quotes = (await getCollection("testimonials"))
   <MarketingHero />
   <section class="proof-bar" aria-label="Marketing numbers">
     <div class="container proof-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
-      <div><strong data-count="50+">50+</strong><span>Social media accounts</span></div>
-      <div><strong data-count="37M+">37M+</strong><span>Views across four flagship accounts in 12 months</span></div>
-      <div><strong data-count="5">5</strong><span>Content languages</span></div>
-      <div><strong data-count="96K+">96K+</strong><span>Followers on our own TikTok and Instagram</span></div>
+      <div class="proof-stat"><strong data-count="50+">50+</strong><span>Social media accounts</span></div>
+      <div class="proof-stat"><strong data-count="37M+">37M+</strong><span>Views across four flagship accounts in 12 months</span></div>
+      <div class="proof-stat"><strong data-count="5">5</strong><span>Content languages</span></div>
+      <div class="proof-stat"><strong data-count="96K+">96K+</strong><span>Followers on our own TikTok and Instagram</span></div>
     </div>
   </section>
   <MarketingServices />
@@ -85,7 +86,7 @@ const quotes = (await getCollection("testimonials"))
   <section class="section-tint">
     <div class="container">
       <SectionHeading title="From the reference letters." />
-      <TestimonialCarousel client:visible items={quotes} interval={5000} />
+      <TestimonialCarousel client:visible items={quotes} />
     </div>
   </section>
   <CTA
@@ -109,8 +110,30 @@ const quotes = (await getCollection("testimonials"))
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding-block: 12px;
+    padding: 14px 12px;
+    margin-inline: -12px;
+    border-radius: 14px;
     border-bottom: 1px solid var(--color-line);
+    transition:
+      background 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .lang-examples li:hover {
+      background: white;
+      border-color: transparent;
+      box-shadow: 0 10px 24px rgba(0, 175, 237, 0.1);
+    }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .lang-examples li:active {
+      background: white;
+      border-color: transparent;
+      box-shadow: 0 8px 18px rgba(0, 175, 237, 0.1);
+    }
   }
 
   .lang-examples strong {

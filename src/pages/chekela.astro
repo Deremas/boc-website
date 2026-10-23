@@ -41,8 +41,8 @@ import { chekelaFeatures, chekelaStats } from "../data/services";
   <section class="proof-bar">
     <div class="container proof-grid chekela-stats">
       {chekelaStats.map((item) => (
-        <div>
-          <strong>{item.value}</strong>
+        <div class="proof-stat">
+          <strong data-count={item.value}>{item.value}</strong>
           <span>{item.label}</span>
         </div>
       ))}
@@ -63,11 +63,11 @@ import { chekelaFeatures, chekelaStats } from "../data/services";
           ))
         }
       </div>
-      <div class="card" style="margin-top: 18px;">
+      <div class="card card-soft" style="margin-top: 18px;">
         <h3>Recognition</h3>
         <p>Recommended by the Addis Ababa City Government Education Bureau to secondary schools. Recognised by the iceaddis Venture Meda accelerator.</p>
       </div>
-      <div class="card" style="margin-top: 18px;">
+      <div class="card card-soft" style="margin-top: 18px;">
         <h3>Digital marketing course</h3>
         <p>Our social media course — first taught in person at Nisir Training Center — is now on Chekela, including paid ad management taught by our General Manager.</p>
       </div>

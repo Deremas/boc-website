@@ -1,17 +1,21 @@
 export const marketingServices = [
   {
+    icon: "feed" as const,
     title: "Social media management",
     text: "Strategy, content calendars, daily publishing and monthly reporting. Replies, livestreams and Q&A, with sensitive questions escalated to you.",
   },
   {
+    icon: "camera" as const,
     title: "Content and video",
     text: "Scriptwriting, on-site filming, editing, motion graphics, photography and design, with on-camera hosts. YouTube strategy and long-form storytelling.",
   },
   {
+    icon: "ads" as const,
     title: "Paid ads and tracking",
     text: "Meta, TikTok, Google Ads and Telegram Ads, with targeting and testing for a lower cost per lead. GA4 and pixels record calls, WhatsApp and Telegram clicks, enquiries and form submissions.",
   },
   {
+    icon: "brand" as const,
     title: "Brand, creators and training",
     text: "Logos, visual identity, guidelines and launch assets. Creators briefed and managed. Training for in-house teams, in person or on Chekela.",
   },
@@ -152,18 +156,22 @@ export const painPoints = [
 
 export const otherSystems = [
   {
+    icon: "stack" as const,
     title: "Odoo implementation",
     text: "For clients who prefer an international platform — configuration, custom modules, migration and training. Nokdes Trading runs on an Odoo system we delivered.",
   },
   {
+    icon: "boxes" as const,
     title: "Stock and financial management",
     text: "Live stock, sales and branch control for shops, wholesalers and supermarkets. 100+ businesses, 96 branches.",
   },
   {
+    icon: "industry" as const,
     title: "Industry systems",
     text: "Restaurants and cafés, bakeries, supermarkets, EV charging stations, import and distribution, job shops.",
   },
   {
+    icon: "code" as const,
     title: "Custom software, web and mobile",
     text: "Operational systems, portals, mobile apps and websites built around your process.",
   },

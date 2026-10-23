@@ -6,7 +6,7 @@ import LogoWall from "../../components/common/LogoWall.astro";
 import CTA from "../../components/common/CTA.astro";
 import { getCollection } from "astro:content";
 
-const caseOrder = ["lavish-medical-spa", "peniel", "apex", "konel", "nova-water", "wow-energy", "vector", "viola", "pharmacy-stock", "bigne-pastry", "rungo-liquars", "import-system"];
+const caseOrder = ["lavish-medical-spa", "peniel", "apex", "konel", "nova-water", "wow-energy", "vector", "viola", "pharmacy-stock", "bigne-pastry", "rungo-liquars", "import-system", "spectrum-engineering"];
 const studies = (await getCollection("caseStudies")).sort(
   (a, b) => caseOrder.indexOf(a.id) - caseOrder.indexOf(b.id),
 );

@@ -19,7 +19,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 <BaseLayout
   title="Contact Blue Ocean Creatives | Addis Ababa, Ethiopia"
-  description="Get a marketing proposal or book a live ERP demo. Call +251 911 061 348, email contact@blueoceancreatives.com or visit us at the BT Building, Haya Hulet, Addis Ababa."
+  description="Get a marketing proposal or book a live ERP demo. Call +251 911 061 348, email coo@blueoceancreatives.com or visit us at the BT Building, Haya Hulet, Addis Ababa."
 >
   <section>
     <div class="container contact-layout">
@@ -27,12 +27,12 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         <p class="eyebrow">Contact</p>
         <h1>Let’s talk.</h1>
         <p class="lede">Tell us what you need. We reply within one working day.</p>
-        <div class="card" style="margin-top: 24px;">
+        <div class="card contact-panel" style="margin-top: 24px;">
           <ContactForm client:load siteKey={siteKey} initialInterest={interest} />
         </div>
       </div>
       <aside>
-        <div class="card">
+        <div class="card reach-card">
           <h2>Reach us</h2>
           <div class="icon-list" style="margin-top: 14px;">
             <p class="icon-line">
@@ -44,10 +44,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
             </p>
             <p class="icon-line">
               <Icon name="mail" />
-              <span class="inline-links">
-                <a href={`mailto:${company.email}`}>{company.email}</a>
-                <a href={`mailto:${company.emailCoo}`}>{company.emailCoo}</a>
-              </span>
+              <a href={`mailto:${company.email}`}>{company.email}</a>
             </p>
             <p class="icon-line">
               <Icon name="pin" />

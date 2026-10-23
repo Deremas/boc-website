@@ -1,5 +1,6 @@
 ---
 import SectionHeading from "../common/SectionHeading.astro";
+import Icon from "../common/Icon.astro";
 import { otherSystems } from "../../data/services";
 ---
 
@@ -10,6 +11,9 @@ import { otherSystems } from "../../data/services";
       {
         otherSystems.map((card) => (
           <article class="card">
+            <span class="card-icon">
+              <Icon name={card.icon} />
+            </span>
             <h3>{card.title}</h3>
             <p>{card.text}</p>
           </article>

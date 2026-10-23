@@ -43,7 +43,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       return Response.json(
         {
           success: false,
-          message: "Enquiry delivery is not configured yet. Please call or email us directly.",
+          message: "We could not deliver your message just now. Please call or email us directly.",
         },
         { status: 503 },
       );

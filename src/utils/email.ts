@@ -3,7 +3,7 @@ import type { Enquiry } from "./validation";
 export async function sendEnquiryEmail(enquiry: Enquiry) {
   const apiKey = import.meta.env.EMAIL_API_KEY;
   const from = import.meta.env.EMAIL_FROM;
-  const to = import.meta.env.EMAIL_TO || "contact@blueoceancreatives.com";
+  const to = import.meta.env.EMAIL_TO || "coo@blueoceancreatives.com";
 
   if (!apiKey || !from) return false;
 

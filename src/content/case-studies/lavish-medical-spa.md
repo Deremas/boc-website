@@ -5,6 +5,7 @@ sector: "Healthcare"
 location: "Addis Ababa, Dire Dawa and Adama"
 headlineResult: "13M TikTok views and 4.2M Meta views in 12 months (Addis Ababa)"
 heroImage: "/logos/clients/lavish.webp"
+website: "https://lavishmedicalspa.com/"
 services:
   - Social media management
   - TikTok

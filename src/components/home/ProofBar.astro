@@ -6,7 +6,7 @@ import { proof } from "../../data/company";
   <div class="container proof-grid">
     {
       proof.map((item) => (
-        <div>
+        <div class="proof-stat">
           <strong data-count={item.value}>{item.value}</strong>
           <span>{item.label}</span>
         </div>

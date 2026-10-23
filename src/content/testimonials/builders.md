@@ -3,6 +3,7 @@ quote: "Their team worked in a structured and dependable manner, consistently de
 name: "Builders Creamy Trading PLC"
 role: "Reference letter"
 company: "February 2026"
+photo: "/images/testimonials/amanuel-teshome-builders.jpg"
 pages:
   - marketing
 ---

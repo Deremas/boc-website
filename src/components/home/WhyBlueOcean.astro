@@ -1,5 +1,6 @@
 ---
 import SectionHeading from "../common/SectionHeading.astro";
+import Icon from "../common/Icon.astro";
 import { why } from "../../data/company";
 ---
 
@@ -10,6 +11,9 @@ import { why } from "../../data/company";
       {
         why.map((item) => (
           <article class="card">
+            <span class="card-icon">
+              <Icon name={item.icon} />
+            </span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>
