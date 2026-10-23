@@ -3,6 +3,7 @@ interface Client {
   name: string;
   logo?: string;
   color?: boolean;
+  zoom?: boolean;
   website?: string;
 }
 
@@ -27,14 +28,14 @@ const visible = marquee ? clients.filter((client) => Boolean(client.logo)) : cli
                 <img
                   src={client.logo}
                   alt={clone ? "" : `${client.name} logo`}
-                  width="148"
-                  height="64"
+                  width="160"
+                  height="72"
                   loading={clone ? "lazy" : "eager"}
                   decoding="async"
                   fetchpriority={clone ? "low" : "auto"}
                 />
               );
-              const className = ["logo-tile", client.color && "logo-color"];
+              const className = ["logo-tile", client.color && "logo-color", client.zoom && "logo-zoom"];
               return client.website ? (
                 <a
                   class:list={className}
@@ -69,15 +70,15 @@ const visible = marquee ? clients.filter((client) => Boolean(client.logo)) : cli
           <img
             src={client.logo}
             alt={`${client.name} logo`}
-            width="148"
-            height="64"
+            width="160"
+            height="72"
             loading="lazy"
             decoding="async"
           />
         ) : (
           <span>{client.name}</span>
         );
-        const className = ["logo-tile", client.color && "logo-color"];
+        const className = ["logo-tile", client.color && "logo-color", client.zoom && "logo-zoom"];
         return client.website ? (
           <a class:list={className} href={client.website} target="_blank" rel="noopener noreferrer">
             {tile}

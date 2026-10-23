@@ -3,5 +3,6 @@
   "logo": "/logos/clients/rungo.png",
   "website": "https://rungooneoperations.com",
   "color": true,
+  "zoom": true,
   "order": 12
 }

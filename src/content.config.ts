@@ -46,6 +46,8 @@ const clients = defineCollection({
     name: z.string(),
     logo: z.string().optional(),
     color: z.boolean().optional(),
+    /** Extra scale in logo tiles for marks that sit small on their canvas */
+    zoom: z.boolean().optional(),
     website: z.string().optional(),
     order: z.number(),
   }),

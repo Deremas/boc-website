@@ -1,6 +1,7 @@
 {
   "name": "Liesak Resorts",
-  "logo": "/logos/clients/liesak.png",
+  "logo": "/logos/clients/liesak.webp",
   "color": true,
+  "zoom": true,
   "order": 9
 }
