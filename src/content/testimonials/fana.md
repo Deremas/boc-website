@@ -4,6 +4,7 @@ name: "Fahmi Adus"
 role: "CEO"
 company: "Fana Cafe and Restaurant"
 photo: "/images/testimonials/fahmi-adus-fana.webp"
+logo: "/images/client_testimonials/fana.jpg"
 pages:
   - home
   - marketing
