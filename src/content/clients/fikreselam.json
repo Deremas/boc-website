@@ -2,5 +2,6 @@
   "name": "Fikreselam General Hospital",
   "logo": "/logos/clients/fikreselam.webp",
   "color": true,
+  "zoom": true,
   "order": 8
 }
